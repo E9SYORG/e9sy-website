@@ -12,9 +12,9 @@
 --purple:#8a4dff;
 
 /* Tuned for your setup (window.innerHeight = 1308, hero = 120vh) */
---eyeY: 44%;
---eyeLeftX: 49%;
---eyeRightX: 57%;
+--eyeY: 36%;
+--eyeLeftX: 40%;
+--eyeRightX: 60%;
 }
 
 html{ scroll-behavior:smooth; }
@@ -103,7 +103,7 @@ top: var(--eyeY);
 width: 26px;
 height: 26px;
 border-radius: 50%;
-z-index:4;
+z-index:3;
 pointer-events:none;
 
 background: radial-gradient(circle at center,
@@ -132,8 +132,8 @@ mix-blend-mode: lighten;
 
 /* Hero content positioned between brows */
 .hero-content{
-position:relative;
-z-index:5;
+isolation:isolate;
+z-index:6;
 max-width:900px;
 transform: translateY(-95px);
 }
