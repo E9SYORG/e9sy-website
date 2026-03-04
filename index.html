@@ -10,19 +10,24 @@
 :root{
 --blue:#4a6cff;
 --purple:#8a4dff;
---bg:#000;
-/* Eye glow positions (tweak if needed) */
---eyeY: 64%;
---eyeLeftX: 44%;
---eyeRightX: 56%;
+
+/* Eye glow positions (tuned closer to your screenshot) */
+--eyeY: 70%;
+--eyeLeftX: 41%;
+--eyeRightX: 59%;
 }
 
 html{ scroll-behavior:smooth; }
 
+/* ✅ Fix #3: page background blends with hero universe */
 body{
 margin:0;
 font-family:'Inter',sans-serif;
-background:var(--bg);
+background:
+radial-gradient(circle at 20% 10%, rgba(74,108,255,0.18), transparent 55%),
+radial-gradient(circle at 80% 40%, rgba(138,77,255,0.14), transparent 60%),
+radial-gradient(circle at 50% 90%, rgba(74,108,255,0.10), transparent 65%),
+#05060a;
 color:#f5f5f5;
 }
 
@@ -30,7 +35,13 @@ color:#f5f5f5;
 .hero{
 position:relative;
 height:100vh;
-background:url('hero.png') center 20% / cover no-repeat; /* Option A */
+
+/* ✅ Fix #1 while keeping face centered:
+- Keep face centered (50%)
+- Nudge slightly down (55%) to show more bottom logo without shifting too much
+*/
+background:url('hero.png') center 55% / cover no-repeat;
+
 display:flex;
 justify-content:center;
 align-items:center;
@@ -41,20 +52,20 @@ padding:0 20px;
 overflow:hidden;
 
 /* Make background less faded */
-filter: brightness(1.12) contrast(1.08) saturate(1.05);
+filter: brightness(1.10) contrast(1.08) saturate(1.06);
 }
 
-/* Cinematic overlay (lighter than before, so art pops more) */
+/* Cinematic overlay (lighter so logo isn’t washed out) */
 .overlay{
 position:absolute;
 inset:0;
 background:
-radial-gradient(circle at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.52) 75%),
+radial-gradient(circle at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.50) 75%),
 rgba(0,0,0,0.10);
 z-index:1;
 }
 
-/* Floating particles / haze (premium feel) */
+/* Floating particles / haze */
 .hero::before{
 content:"";
 position:absolute;
@@ -76,19 +87,22 @@ from{ transform: translate3d(-10px,-8px,0) scale(1.02); }
 to{ transform: translate3d(12px,10px,0) scale(1.06); }
 }
 
-/* Subtle animated eye glow (two small glow orbs) */
+/* ✅ Fix #2: Eye glow (repositioned + slightly larger) */
 .eye-glow{
 position:absolute;
 top: var(--eyeY);
-width: 28px;
-height: 28px;
+width: 34px;
+height: 34px;
 border-radius: 50%;
 z-index:3;
 pointer-events:none;
-background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, rgba(138,77,255,0.12) 35%, rgba(74,108,255,0.0) 70%);
+background: radial-gradient(circle at center,
+rgba(255,255,255,0.35) 0%,
+rgba(138,77,255,0.18) 32%,
+rgba(74,108,255,0.00) 70%);
 box-shadow:
-0 0 20px rgba(74,108,255,0.55),
-0 0 30px rgba(138,77,255,0.35);
+0 0 22px rgba(74,108,255,0.55),
+0 0 34px rgba(138,77,255,0.40);
 animation: eyePulse 2.8s ease-in-out infinite;
 mix-blend-mode: screen;
 }
@@ -169,7 +183,7 @@ margin:30px auto 0;
 max-width:720px;
 padding:28px 22px;
 border:1px solid rgba(74,108,255,0.35);
-background: rgba(17,17,17,0.55);
+background: rgba(17,17,17,0.45);
 box-shadow: 0 0 22px rgba(138,77,255,0.18);
 border-radius:10px;
 }
@@ -190,8 +204,8 @@ margin-top:18px;
 input{
 padding:14px;
 width:260px;
-background:#111;
-border:1px solid rgba(255,255,255,0.08);
+background:rgba(17,17,17,0.65);
+border:1px solid rgba(255,255,255,0.10);
 color:#fff;
 border-radius:10px;
 outline:none;
@@ -217,7 +231,7 @@ transform: translateY(-1px);
 /* FOOTER */
 footer{
 padding:60px 20px;
-opacity:.5;
+opacity:.6;
 font-size:.9rem;
 text-align:center;
 }
@@ -237,7 +251,7 @@ transform: translateY(0);
 @media (max-width: 520px){
 .hero h1{ font-size:3rem; }
 :root{
---eyeY: 66%;
+--eyeY: 71%;
 }
 }
 </style>
@@ -249,7 +263,7 @@ transform: translateY(0);
 <section class="hero">
 <div class="overlay"></div>
 
-<!-- animated eye glow orbs -->
+<!-- Eye glow -->
 <div class="eye-glow eye-left"></div>
 <div class="eye-glow eye-right"></div>
 
@@ -265,7 +279,6 @@ transform: translateY(0);
 <h2>WANT IT BAD</h2>
 <p>It’s not desperation. It’s discipline.</p>
 
-<!-- Swap this panel for your SoundCloud/Spotify embed when ready -->
 <div class="coming-soon">
 <p><strong>Transmission pending.</strong></p>
 <p>Inner Circle hears it first.</p>
@@ -297,14 +310,13 @@ The goal isn’t noise. It’s impact.
 <footer class="reveal">© 2026 E9$Y</footer>
 
 <script>
-// Scroll reveal (premium “smooth entrance” effect)
+// Scroll reveal
 const items = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
 entries.forEach(e => {
 if (e.isIntersecting) e.target.classList.add('in');
 });
 }, { threshold: 0.12 });
-
 items.forEach(i => obs.observe(i));
 </script>
 
