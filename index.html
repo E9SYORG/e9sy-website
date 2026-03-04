@@ -7,26 +7,109 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-.hero {
-position: relative;
-height: 100vh;
-background: url('hero.png') center/cover no-repeat;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#000;
+color:white;
 }
 
-.overlay {
-position: absolute;
-inset: 0;
-background: rgba(0,0,0,0.65);
+/* HERO */
+.hero{
+position:relative;
+height:100vh;
+background:url('hero.png') center center/cover no-repeat;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
-.hero h1, .hero p, .hero a {
-position: relative;
-z-index: 2;
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
+
+.hero h1{
+font-size:4rem;
+letter-spacing:3px;
+background:linear-gradient(90deg,#ffffff,#4a6cff,#8a4dff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* SECTIONS */
+section{
+padding:80px 20px;
+max-width:900px;
+margin:auto;
+text-align:center;
+}
+
+h2{
+letter-spacing:2px;
+margin-bottom:20px;
+}
+
+p{
+line-height:1.8;
+opacity:.9;
+}
+
+/* BUTTON */
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:14px 34px;
+border:1px solid #4a6cff;
+color:#4a6cff;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+background:#4a6cff;
+color:black;
+box-shadow:0 0 15px #4a6cff;
+}
+
+/* EMAIL INPUT */
+input{
+padding:14px;
+width:250px;
+background:#111;
+border:none;
+color:white;
+margin-right:10px;
+}
+
+button{
+padding:14px 22px;
+background:#8a4dff;
+border:none;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#4a6cff;
+}
+
+/* FOOTER */
+footer{
+padding:60px;
+opacity:.5;
+font-size:.9rem;
+text-align:center;
 }
 
 </style>
