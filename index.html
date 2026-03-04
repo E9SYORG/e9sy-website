@@ -11,16 +11,14 @@
 --blue:#4a6cff;
 --purple:#8a4dff;
 
-/* Eye glow positions (these are your current "locked" best guess)
-If they're off by a hair, tweak by 1-2% only. */
---eyeY: 32%;
---eyeLeftX: 49%;
---eyeRightX: 56%;
+/* Tuned for your setup (window.innerHeight = 1308, hero = 120vh) */
+--eyeY: 44%;
+--eyeLeftX: 47%;
+--eyeRightX: 58%;
 }
 
 html{ scroll-behavior:smooth; }
 
-/* Page background blends with hero */
 body{
 margin:0;
 font-family:'Inter',sans-serif;
@@ -36,7 +34,7 @@ color:#f5f5f5;
 .hero{
 position:relative;
 height:120vh;
-background:url('hero.png') center 55% / cover no-repeat; /* keep face centered-ish */
+background:url('hero.png') center 50% / cover no-repeat; /* keep face centered */
 display:flex;
 justify-content:center;
 align-items:center;
@@ -48,7 +46,6 @@ overflow:hidden;
 filter: brightness(1.10) contrast(1.08) saturate(1.06);
 }
 
-/* Lighter vignette so art isn't faded */
 .overlay{
 position:absolute;
 inset:0;
@@ -59,7 +56,7 @@ z-index:1;
 pointer-events:none;
 }
 
-/* Floating particles / haze */
+/* Haze / particles */
 .hero::before{
 content:"";
 position:absolute;
@@ -81,21 +78,25 @@ from{ transform: translate3d(-10px,-8px,0) scale(1.02); }
 to{ transform: translate3d(12px,10px,0) scale(1.06); }
 }
 
-/* ✅ PRO FIX: bottom logo-strip so the big white letters don't look cut */
+/* Bottom strip that blends (no seam line) */
 .logo-strip{
 position:absolute;
 left:0;
 right:0;
 bottom:0;
-height:22vh;
+height:28vh;
 background:url('hero.png') center bottom / cover no-repeat;
 filter: brightness(1.05) contrast(1.05);
 opacity:0.95;
 z-index:2;
 pointer-events:none;
+
+/* Blend the top edge */
+-webkit-mask-image: linear-gradient(to top, black 0%, black 70%, transparent 100%);
+mask-image: linear-gradient(to top, black 0%, black 70%, transparent 100%);
 }
 
-/* Eye glow (stronger + visible) */
+/* Eye glow */
 .eye-glow{
 position:absolute;
 top: var(--eyeY);
@@ -129,22 +130,18 @@ mix-blend-mode: lighten;
 50%{ opacity:.98; transform: translate(-50%,-50%) scale(1.12); }
 }
 
-/* HERO content */
+/* Hero content positioned between brows */
 .hero-content{
 position:relative;
 z-index:5;
 max-width:900px;
-
-/* ✅ Put E9$Y between eyebrows:
-this moves the whole text block up */
-transform: translateY(-110px);
+transform: translateY(-95px);
 }
 
 .hero h1{
-font-size:3.2rem; /* smaller so it fits clean between brows */
+font-size:3.2rem;
 letter-spacing:3px;
 margin:0 0 10px;
-
 background:linear-gradient(90deg,#ffffff,var(--blue),var(--purple));
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
@@ -157,7 +154,6 @@ opacity:.95;
 margin:0;
 }
 
-/* SECTIONS */
 section{
 padding:80px 20px;
 max-width:900px;
@@ -175,7 +171,6 @@ line-height:1.8;
 opacity:.9;
 }
 
-/* CTA BUTTON */
 .btn{
 display:inline-block;
 margin-top:25px;
@@ -197,7 +192,6 @@ box-shadow:0 0 28px rgba(74,108,255,0.9);
 transform: translateY(-1px);
 }
 
-/* COMING SOON PANEL */
 .coming-soon{
 margin:30px auto 0;
 max-width:720px;
@@ -211,7 +205,6 @@ border-radius:10px;
 .coming-soon p{ margin:0; opacity:.95; }
 .coming-soon p + p{ margin-top:10px; opacity:.85; }
 
-/* EMAIL */
 .email-wrap{
 display:flex;
 justify-content:center;
@@ -248,7 +241,6 @@ box-shadow: 0 0 22px rgba(74,108,255,0.55);
 transform: translateY(-1px);
 }
 
-/* FOOTER */
 footer{
 padding:60px 20px;
 opacity:.6;
@@ -256,7 +248,6 @@ font-size:.9rem;
 text-align:center;
 }
 
-/* Scroll reveal */
 .reveal{
 opacity:0;
 transform: translateY(18px);
@@ -267,11 +258,11 @@ opacity:1;
 transform: translateY(0);
 }
 
-/* Mobile tune */
 @media (max-width: 520px){
 .hero h1{ font-size:2.7rem; }
 .hero-content{ transform: translateY(-90px); }
-:root{ --eyeY: 34%; }
+:root{ --eyeY: 46%; }
+.logo-strip{ height:30vh; }
 }
 </style>
 </head>
