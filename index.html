@@ -11,10 +11,10 @@
 --blue:#4a6cff;
 --purple:#8a4dff;
 
-/* Tuned for your setup (window.innerHeight = 1308, hero = 120vh) */
---eyeY: 46%;
---eyeLeftX: 41%;
---eyeRightX: 59%;
+/* ✅ Eye glow tuned for background-size: contain */
+--eyeY: 47%;
+--eyeLeftX: 43%;
+--eyeRightX: 57%;
 }
 
 html{ scroll-behavior:smooth; }
@@ -34,29 +34,30 @@ color:#f5f5f5;
 .hero{
 position:relative;
 height:120vh;
-background:url('hero.png') center 50% / contain no-repeat; /* keep face centered */
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-max-width:none;
-margin:0;
 padding:0 20px;
 overflow:hidden;
-filter: brightness(1.10) contrast(1.08) saturate(1.06);
+
+/* ✅ FULL ART (no cropping, no seam) */
+background: #05060a url('hero.png') center center / contain no-repeat;
+filter: brightness(1.08) contrast(1.06) saturate(1.06);
 }
 
+/* Subtle vignette to keep text readable without fading the art too much */
 .overlay{
 position:absolute;
 inset:0;
 background:
-radial-gradient(circle at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.50) 75%),
-rgba(0,0,0,0.10);
+radial-gradient(circle at center, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.50) 78%),
+rgba(0,0,0,0.08);
 z-index:1;
 pointer-events:none;
 }
 
-/* Haze / particles */
+/* Ambient haze */
 .hero::before{
 content:"";
 position:absolute;
@@ -78,24 +79,6 @@ from{ transform: translate3d(-10px,-8px,0) scale(1.02); }
 to{ transform: translate3d(12px,10px,0) scale(1.06); }
 }
 
-/* Bottom strip that blends (no seam line) */
-.logo-strip{
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-height:30vh;
-background:url('hero.png') center bottom / cover no-repeat;
-filter: brightness(1.05) contrast(1.05);
-opacity:0.95;
-z-index:2;
-pointer-events:none;
-
-/* Blend the top edge */
--webkit-mask-image: linear-gradient(to top, black 0%, black 60%, transparent 100%);
-mask-image: linear-gradient(to top, black 0%, black 60%, transparent 100%);
-}
-
 /* Eye glow */
 .eye-glow{
 position:absolute;
@@ -103,7 +86,7 @@ top: var(--eyeY);
 width: 26px;
 height: 26px;
 border-radius: 50%;
-z-index:3;
+z-index:3; /* ✅ behind hero text */
 pointer-events:none;
 
 background: radial-gradient(circle at center,
@@ -130,23 +113,86 @@ mix-blend-mode: lighten;
 50%{ opacity:.98; transform: translate(-50%,-50%) scale(1.12); }
 }
 
-/* Hero content positioned between brows */
+/* Hero content */
 .hero-content{
-posistion:relative;
+position:relative;
 z-index:6;
 isolation:isolate;
 max-width:900px;
 transform: translateY(-95px);
 }
 
+/* ✅ Neon pulse + purple lightning outline for the small text E9$Y */
 .hero h1{
-font-size:3.2rem;
-letter-spacing:3px;
-margin:0 0 10px;
-background:linear-gradient(90deg,#ffffff,var(--blue),var(--purple));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-text-shadow:0 0 25px rgba(74,108,255,0.45);
+position: relative;
+font-size: 3.2rem;
+letter-spacing: 3px;
+margin: 0 0 10px;
+display: inline-block;
+
+background: linear-gradient(90deg,#ffffff,var(--blue),var(--purple));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+animation: neonPulse 2.2s ease-in-out infinite;
+text-shadow:
+0 0 10px rgba(74,108,255,0.55),
+0 0 24px rgba(74,108,255,0.45),
+0 0 40px rgba(138,77,255,0.30);
+}
+
+.hero h1::after{
+content: "E9$Y";
+position: absolute;
+inset: 0;
+z-index: -1;
+
+background:
+repeating-linear-gradient(
+115deg,
+rgba(138,77,255,0.0) 0px,
+rgba(138,77,255,0.0) 6px,
+rgba(138,77,255,0.65) 7px,
+rgba(138,77,255,0.0) 10px
+),
+radial-gradient(circle at 30% 40%, rgba(74,108,255,0.55), transparent 55%),
+radial-gradient(circle at 70% 60%, rgba(138,77,255,0.55), transparent 55%);
+
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+filter: blur(0.6px) drop-shadow(0 0 10px rgba(138,77,255,0.85));
+opacity: 0.85;
+
+animation: lightningFlicker 1.35s infinite steps(2,end);
+transform: translate(0.5px, -0.5px);
+}
+
+@keyframes neonPulse{
+0%,100%{
+text-shadow:
+0 0 10px rgba(74,108,255,0.50),
+0 0 24px rgba(74,108,255,0.35),
+0 0 40px rgba(138,77,255,0.22);
+filter: brightness(1.02);
+}
+50%{
+text-shadow:
+0 0 14px rgba(74,108,255,0.85),
+0 0 34px rgba(74,108,255,0.55),
+0 0 60px rgba(138,77,255,0.40);
+filter: brightness(1.12);
+}
+}
+
+@keyframes lightningFlicker{
+0%{ opacity: .25; transform: translate(0.5px,-0.5px) skewX(0deg); }
+8%{ opacity: .95; transform: translate(-0.5px,0.5px) skewX(-6deg); }
+16%{ opacity: .35; transform: translate(0.5px,0px) skewX(3deg); }
+24%{ opacity: .98; transform: translate(-1px,0.5px) skewX(-10deg); }
+32%{ opacity: .40; transform: translate(0.5px,-0.5px) skewX(6deg); }
+60%{ opacity: .85; transform: translate(-0.5px,0px) skewX(-4deg); }
+100%{ opacity: .25; transform: translate(0.5px,-0.5px) skewX(0deg); }
 }
 
 .hero p{
@@ -155,6 +201,7 @@ opacity:.95;
 margin:0;
 }
 
+/* Sections */
 section{
 padding:80px 20px;
 max-width:900px;
@@ -172,6 +219,7 @@ line-height:1.8;
 opacity:.9;
 }
 
+/* CTA button */
 .btn{
 display:inline-block;
 margin-top:25px;
@@ -193,6 +241,7 @@ box-shadow:0 0 28px rgba(74,108,255,0.9);
 transform: translateY(-1px);
 }
 
+/* Coming soon panel */
 .coming-soon{
 margin:30px auto 0;
 max-width:720px;
@@ -206,6 +255,7 @@ border-radius:10px;
 .coming-soon p{ margin:0; opacity:.95; }
 .coming-soon p + p{ margin-top:10px; opacity:.85; }
 
+/* Email */
 .email-wrap{
 display:flex;
 justify-content:center;
@@ -249,6 +299,7 @@ font-size:.9rem;
 text-align:center;
 }
 
+/* Reveal */
 .reveal{
 opacity:0;
 transform: translateY(18px);
@@ -261,9 +312,8 @@ transform: translateY(0);
 
 @media (max-width: 520px){
 .hero h1{ font-size:2.7rem; }
-.hero-content{ transform: translateY(-90px); }
-:root{ --eyeY: 46%; }
-.logo-strip{ height:30vh; }
+.hero-content{ transform: translateY(-85px); }
+:root{ --eyeY: 49%; }
 }
 </style>
 </head>
