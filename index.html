@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>E9$Y | Official</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -11,31 +11,37 @@ body{
 margin:0;
 font-family:'Inter',sans-serif;
 background:#000;
-color:white;
+color:#f5f5f5;
 }
 
 /* HERO */
 .hero{
 position:relative;
 height:100vh;
-background:url('hero.png') center center/cover no-repeat;
+background:url('hero.png') center 20% / cover no-repeat; /* Option A: cover + tuned position */
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+max-width:none;
+margin:0;
+padding:0 20px;
 }
 
+/* Cinematic overlay + vignette */
 .overlay{
 position:absolute;
 inset:0;
-background:rgba(0,0,0,0.65);
+background:
+radial-gradient(circle at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.85) 75%),
+rgba(0,0,0,0.35);
 }
 
 .hero-content{
 position:relative;
 z-index:2;
-max-width:700px;
+max-width:900px;
 }
 
 .hero h1{
@@ -44,6 +50,14 @@ letter-spacing:3px;
 background:linear-gradient(90deg,#ffffff,#4a6cff,#8a4dff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+text-shadow:0 0 25px rgba(74,108,255,0.45);
+margin:0 0 10px;
+}
+
+.hero p{
+line-height:1.8;
+opacity:.95;
+margin:0;
 }
 
 /* SECTIONS */
@@ -56,7 +70,7 @@ text-align:center;
 
 h2{
 letter-spacing:2px;
-margin-bottom:20px;
+margin:0 0 20px;
 }
 
 p{
@@ -64,58 +78,97 @@ line-height:1.8;
 opacity:.9;
 }
 
-/* BUTTON */
+/* CTA BUTTON (glow + glass) */
 .btn{
 display:inline-block;
 margin-top:25px;
 padding:14px 34px;
 border:1px solid #4a6cff;
-color:#4a6cff;
+color:#ffffff;
+background: rgba(74,108,255,0.12);
 text-decoration:none;
 transition:.3s;
+box-shadow: 0 0 18px rgba(138,77,255,0.35);
+backdrop-filter: blur(6px);
+border-radius: 10px;
 }
 
 .btn:hover{
 background:#4a6cff;
-color:black;
-box-shadow:0 0 15px #4a6cff;
+color:#000;
+box-shadow:0 0 28px rgba(74,108,255,0.9);
 }
 
-/* EMAIL INPUT */
+/* COMING SOON PANEL (replaces 404 iframe until you’re ready) */
+.coming-soon{
+margin:30px auto 0;
+max-width:720px;
+padding:28px 22px;
+border:1px solid rgba(74,108,255,0.35);
+background: rgba(17,17,17,0.55);
+box-shadow: 0 0 22px rgba(138,77,255,0.18);
+border-radius:10px;
+}
+
+.coming-soon p{
+margin:0;
+opacity:.95;
+}
+
+.coming-soon p + p{
+margin-top:10px;
+opacity:.85;
+}
+
+/* EMAIL */
+.email-wrap{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+margin-top:18px;
+}
+
 input{
 padding:14px;
-width:250px;
+width:260px;
 background:#111;
-border:none;
-color:white;
-margin-right:10px;
+border:1px solid rgba(255,255,255,0.08);
+color:#fff;
+border-radius:10px;
+outline:none;
 }
 
 button{
 padding:14px 22px;
 background:#8a4dff;
 border:none;
-color:white;
+color:#fff;
 cursor:pointer;
 transition:.3s;
+border-radius:10px;
+box-shadow: 0 0 18px rgba(138,77,255,0.25);
 }
 
 button:hover{
 background:#4a6cff;
+box-shadow: 0 0 22px rgba(74,108,255,0.55);
 }
 
 /* FOOTER */
 footer{
-padding:60px;
+padding:60px 20px;
 opacity:.5;
 font-size:.9rem;
 text-align:center;
 }
-
 </style>
 </head>
+
 <body>
 
+<!-- HERO -->
 <section class="hero">
 <div class="overlay"></div>
 <div class="hero-content">
@@ -125,13 +178,19 @@ text-align:center;
 </div>
 </section>
 
+<!-- MUSIC -->
 <section id="music">
 <h2>WANT IT BAD</h2>
 <p>It’s not desperation. It’s discipline.</p>
-<iframe width="100%" height="166" scrolling="no" frameborder="no"
-src="YOUR_SOUNDCLOUD_LINK"></iframe>
+
+<!-- Replace with your SoundCloud iframe when ready -->
+<div class="coming-soon">
+<p><strong>Transmission pending.</strong></p>
+<p>Inner Circle hears it first.</p>
+</div>
 </section>
 
+<!-- SIGNAL -->
 <section>
 <h2>Signal</h2>
 <p>
@@ -142,16 +201,18 @@ The goal isn’t noise. It’s impact.
 </p>
 </section>
 
+<!-- INNER CIRCLE -->
 <section>
 <h2>The Inner Circle</h2>
 <p>Unreleased records. Private transmissions. Early access.</p>
-<input type="email" placeholder="Enter your email">
-<a href="vault.html"><button>Access the Vault</button></a>
+
+<div class="email-wrap">
+<input type="email" placeholder="Enter your email" />
+<a href="vault.html"><button type="button">Access the Vault</button></a>
+</div>
 </section>
 
-<footer>
-© 2026 E9$Y
-</footer>
+<footer>© 2026 E9$Y</footer>
 
 </body>
 </html>
