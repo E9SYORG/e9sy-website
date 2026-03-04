@@ -12,9 +12,9 @@
 --purple:#8a4dff;
 
 /* Tuned for your setup (window.innerHeight = 1308, hero = 120vh) */
---eyeY: 36%;
---eyeLeftX: 40%;
---eyeRightX: 60%;
+--eyeY: 46%;
+--eyeLeftX: 41%;
+--eyeRightX: 59%;
 }
 
 html{ scroll-behavior:smooth; }
@@ -34,7 +34,7 @@ color:#f5f5f5;
 .hero{
 position:relative;
 height:120vh;
-background:url('hero.png') center 50% / cover no-repeat; /* keep face centered */
+background:url('hero.png') center 50% / contain no-repeat; /* keep face centered */
 display:flex;
 justify-content:center;
 align-items:center;
@@ -272,7 +272,6 @@ transform: translateY(0);
 
 <section class="hero">
 <div class="overlay"></div>
-<div class="logo-strip"></div>
 
 <div class="eye-glow eye-left"></div>
 <div class="eye-glow eye-right"></div>
