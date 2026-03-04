@@ -11,7 +11,8 @@
 --blue:#4a6cff;
 --purple:#8a4dff;
 
-/* Eye glow positions (tuned closer to your screenshot) */
+/* Eye glow positions (these are your current "locked" best guess)
+If they're off by a hair, tweak by 1-2% only. */
 --eyeY: 32%;
 --eyeLeftX: 49%;
 --eyeRightX: 56%;
@@ -19,7 +20,7 @@
 
 html{ scroll-behavior:smooth; }
 
-/* ✅ Fix #3: page background blends with hero universe */
+/* Page background blends with hero */
 body{
 margin:0;
 font-family:'Inter',sans-serif;
@@ -35,13 +36,7 @@ color:#f5f5f5;
 .hero{
 position:relative;
 height:120vh;
-
-/* ✅ Fix #1 while keeping face centered:
-- Keep face centered (50%)
-- Nudge slightly down (55%) to show more bottom logo without shifting too much
-*/
-background:url('hero.png') center 52% / cover no-repeat;
-
+background:url('hero.png') center 55% / cover no-repeat; /* keep face centered-ish */
 display:flex;
 justify-content:center;
 align-items:center;
@@ -50,12 +45,10 @@ max-width:none;
 margin:0;
 padding:0 20px;
 overflow:hidden;
-
-/* Make background less faded */
 filter: brightness(1.10) contrast(1.08) saturate(1.06);
 }
 
-/* Cinematic overlay (lighter so logo isn’t washed out) */
+/* Lighter vignette so art isn't faded */
 .overlay{
 position:absolute;
 inset:0;
@@ -63,6 +56,7 @@ background:
 radial-gradient(circle at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.50) 75%),
 rgba(0,0,0,0.10);
 z-index:1;
+pointer-events:none;
 }
 
 /* Floating particles / haze */
@@ -87,24 +81,44 @@ from{ transform: translate3d(-10px,-8px,0) scale(1.02); }
 to{ transform: translate3d(12px,10px,0) scale(1.06); }
 }
 
-/* ✅ Fix #2: Eye glow (repositioned + slightly larger) */
+/* ✅ PRO FIX: bottom logo-strip so the big white letters don't look cut */
+.logo-strip{
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:22vh;
+background:url('hero.png') center bottom / cover no-repeat;
+filter: brightness(1.05) contrast(1.05);
+opacity:0.95;
+z-index:2;
+pointer-events:none;
+}
+
+/* Eye glow (stronger + visible) */
 .eye-glow{
 position:absolute;
 top: var(--eyeY);
-width: 20px;
-height: 20px;
+width: 26px;
+height: 26px;
 border-radius: 50%;
-z-index:3;
+z-index:4;
 pointer-events:none;
+
 background: radial-gradient(circle at center,
-rgba(255,255,255,0.35) 0%,
-rgba(138,77,255,0.18) 32%,
-rgba(74,108,255,0.00) 70%);
+rgba(255,255,255,0.45) 0%,
+rgba(138,77,255,0.22) 35%,
+rgba(74,108,255,0.00) 72%);
+
+opacity:0.95;
+
 box-shadow:
-0 0 22px rgba(74,108,255,0.55),
-0 0 34px rgba(138,77,255,0.40);
+0 0 10px rgba(255,255,255,0.35),
+0 0 22px rgba(74,108,255,0.85),
+0 0 34px rgba(138,77,255,0.65);
+
 animation: eyePulse 2.8s ease-in-out infinite;
-mix-blend-mode: screen;
+mix-blend-mode: lighten;
 }
 
 .eye-left{ left: var(--eyeLeftX); transform: translate(-50%,-50%); }
@@ -112,23 +126,29 @@ mix-blend-mode: screen;
 
 @keyframes eyePulse{
 0%,100%{ opacity:.55; transform: translate(-50%,-50%) scale(0.95); }
-50%{ opacity:.95; transform: translate(-50%,-50%) scale(1.12); }
+50%{ opacity:.98; transform: translate(-50%,-50%) scale(1.12); }
 }
 
+/* HERO content */
 .hero-content{
 position:relative;
-z-index:4;
+z-index:5;
 max-width:900px;
+
+/* ✅ Put E9$Y between eyebrows:
+this moves the whole text block up */
+transform: translateY(-110px);
 }
 
 .hero h1{
-font-size:4rem;
+font-size:3.2rem; /* smaller so it fits clean between brows */
 letter-spacing:3px;
+margin:0 0 10px;
+
 background:linear-gradient(90deg,#ffffff,var(--blue),var(--purple));
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 text-shadow:0 0 25px rgba(74,108,255,0.45);
-margin:0 0 10px;
 }
 
 .hero p{
@@ -225,7 +245,7 @@ box-shadow: 0 0 18px rgba(138,77,255,0.25);
 button:hover{
 background:var(--blue);
 box-shadow: 0 0 22px rgba(74,108,255,0.55);
-transform: translateY(-60px);
+transform: translateY(-1px);
 }
 
 /* FOOTER */
@@ -236,7 +256,7 @@ font-size:.9rem;
 text-align:center;
 }
 
-/* Scroll reveal animation */
+/* Scroll reveal */
 .reveal{
 opacity:0;
 transform: translateY(18px);
@@ -249,21 +269,19 @@ transform: translateY(0);
 
 /* Mobile tune */
 @media (max-width: 520px){
-.hero h1{ font-size:3rem; }
-:root{
---eyeY: 71%;
-}
+.hero h1{ font-size:2.7rem; }
+.hero-content{ transform: translateY(-90px); }
+:root{ --eyeY: 34%; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 <div class="overlay"></div>
+<div class="logo-strip"></div>
 
-<!-- Eye glow -->
 <div class="eye-glow eye-left"></div>
 <div class="eye-glow eye-right"></div>
 
@@ -274,7 +292,6 @@ transform: translateY(0);
 </div>
 </section>
 
-<!-- MUSIC -->
 <section id="music" class="reveal">
 <h2>WANT IT BAD</h2>
 <p>It’s not desperation. It’s discipline.</p>
@@ -285,7 +302,6 @@ transform: translateY(0);
 </div>
 </section>
 
-<!-- SIGNAL -->
 <section class="reveal">
 <h2>Signal</h2>
 <p>
@@ -296,7 +312,6 @@ The goal isn’t noise. It’s impact.
 </p>
 </section>
 
-<!-- INNER CIRCLE -->
 <section class="reveal">
 <h2>The Inner Circle</h2>
 <p>Unreleased records. Private transmissions. Early access.</p>
@@ -310,7 +325,6 @@ The goal isn’t noise. It’s impact.
 <footer class="reveal">© 2026 E9$Y</footer>
 
 <script>
-// Scroll reveal
 const items = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
 entries.forEach(e => {
