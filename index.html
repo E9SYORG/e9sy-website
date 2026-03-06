@@ -11,18 +11,22 @@
 
   <style>
     :root{
-      --bg-1:#05070d;
-      --bg-2:#090d18;
-      --bg-3:#05060a;
+      --bg-1:#04060c;
+      --bg-2:#081120;
+      --bg-3:#030409;
       --text:#f5f7ff;
-      --muted:rgba(234,239,255,.82);
-      --muted-2:rgba(230,235,250,.8);
+      --muted:rgba(234,239,255,.84);
+      --muted-2:rgba(228,233,248,.80);
+
       --royal:#4169e1;
-      --royal-2:#5c82ff;
-      --purple:#8a2be2;
-      --purple-2:#b266ff;
-      --purple-3:#d896ff;
-      --purple-4:#f0b8ff;
+      --royal-2:#5f84ff;
+
+      --indigo-1:#c8a2ff;
+      --indigo-2:#8d6bff;
+      --indigo-3:#6e52ff;
+      --indigo-4:#4f39de;
+      --indigo-bloom:rgba(79,57,222,.34);
+
       --panel:rgba(12,18,34,.78);
       --panel-2:rgba(8,11,20,.88);
       --border:rgba(255,255,255,.08);
@@ -41,8 +45,8 @@
     body{
       font-family:"Inter",Arial,sans-serif;
       background:
-        radial-gradient(circle at top, rgba(65,105,225,.11), transparent 30%),
-        radial-gradient(circle at bottom, rgba(138,43,226,.10), transparent 38%),
+        radial-gradient(circle at top, rgba(65,105,225,.12), transparent 28%),
+        radial-gradient(circle at bottom, rgba(79,57,222,.12), transparent 34%),
         linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 45%,var(--bg-3) 100%);
       color:var(--text);
       overflow-x:hidden;
@@ -63,7 +67,7 @@
           transparent 2px,
           transparent 4px
         );
-      opacity:.10;
+      opacity:.08;
       mix-blend-mode:screen;
       z-index:0;
     }
@@ -72,7 +76,7 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      opacity:.04;
+      opacity:.035;
       background-image:
         radial-gradient(rgba(255,255,255,.35) .55px, transparent .7px);
       background-size:7px 7px;
@@ -109,7 +113,7 @@
       background:rgba(7,10,20,.68);
       box-shadow:
         0 0 25px rgba(65,105,225,.16),
-        0 0 45px rgba(138,43,226,.12);
+        0 0 45px rgba(79,57,222,.14);
       backdrop-filter:blur(10px);
       width:min(90vw,700px);
       border-radius:18px;
@@ -123,7 +127,7 @@
       inset:-1px;
       border-radius:18px;
       padding:1px;
-      background:linear-gradient(135deg, rgba(65,105,225,.65), rgba(138,43,226,.45), rgba(65,105,225,.15));
+      background:linear-gradient(135deg, rgba(65,105,225,.65), rgba(79,57,222,.45), rgba(65,105,225,.15));
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -177,7 +181,7 @@
 
     .enter-btn{
       border:1px solid rgba(126,154,255,.45);
-      background:linear-gradient(180deg, rgba(65,105,225,.20), rgba(138,43,226,.10));
+      background:linear-gradient(180deg, rgba(65,105,225,.20), rgba(79,57,222,.12));
       color:#fff;
       padding:14px 34px;
       font-size:.92rem;
@@ -188,15 +192,15 @@
       transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
       box-shadow:
         0 0 15px rgba(65,105,225,.22),
-        0 0 28px rgba(138,43,226,.14);
+        0 0 28px rgba(79,57,222,.15);
     }
 
     .enter-btn:hover{
       transform:translateY(-2px) scale(1.03);
       box-shadow:
         0 0 18px rgba(65,105,225,.34),
-        0 0 34px rgba(138,43,226,.22);
-      background:linear-gradient(180deg, rgba(65,105,225,.28), rgba(138,43,226,.14));
+        0 0 34px rgba(79,57,222,.24);
+      background:linear-gradient(180deg, rgba(65,105,225,.28), rgba(79,57,222,.16));
     }
 
     .hero{
@@ -212,14 +216,14 @@
     .hero::before{
       content:"";
       position:absolute;
-      width:780px;
-      height:780px;
+      width:820px;
+      height:820px;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(65,105,225,.16) 0%, rgba(65,105,225,.06) 30%, transparent 65%);
+      background:radial-gradient(circle, rgba(65,105,225,.18) 0%, rgba(65,105,225,.06) 30%, transparent 66%);
       top:50%;
       left:50%;
       transform:translate(-50%,-50%);
-      filter:blur(16px);
+      filter:blur(18px);
       pointer-events:none;
     }
 
@@ -254,23 +258,23 @@
       align-items:center;
       justify-content:center;
       margin-bottom:26px;
-      padding:20px 18px;
+      padding:16px 10px;
       isolation:isolate;
     }
 
     .logo-wrap::before{
       content:"";
       position:absolute;
-      width:min(760px,88vw);
-      height:min(470px,62vw);
+      width:min(800px,92vw);
+      height:min(520px,68vw);
       left:50%;
-      top:54%;
+      top:55%;
       transform:translate(-50%,-50%);
       background:
-        radial-gradient(circle, rgba(65,105,225,.58) 0%, rgba(65,105,225,.22) 28%, rgba(138,43,226,.12) 48%, transparent 72%);
-      filter:blur(30px);
+        radial-gradient(circle, rgba(65,105,225,.62) 0%, rgba(65,105,225,.20) 28%, rgba(79,57,222,.14) 50%, transparent 72%);
+      filter:blur(34px);
       z-index:0;
-      animation:coreAura 3.6s ease-in-out infinite;
+      animation:coreAura 3.8s ease-in-out infinite;
       pointer-events:none;
     }
 
@@ -294,7 +298,7 @@
         drop-shadow(0 0 14px var(--royal))
         drop-shadow(0 0 28px var(--royal))
         drop-shadow(0 0 56px rgba(65,105,225,.96));
-      animation:logoPulse 2.2s ease-in-out infinite;
+      animation:logoPulse 2.3s ease-in-out infinite;
     }
 
     .electric-svg{
@@ -312,63 +316,66 @@
 
     .bolt-aura,
     .bolt-main,
-    .bolt-core{
+    .bolt-core,
+    .spark-aura,
+    .spark-main,
+    .spark-core{
       fill:none;
       stroke-linecap:round;
       stroke-linejoin:round;
-      mix-blend-mode:screen;
       vector-effect:non-scaling-stroke;
+      mix-blend-mode:screen;
     }
 
-    .bolt-aura{
-      stroke:rgba(178,102,255,.18);
+    .bolt-aura,
+    .spark-aura{
+      stroke:rgba(79,57,222,.22);
       stroke-width:16;
       filter:url(#electricGlowAura);
-      animation:electricFlicker 1.9s infinite ease-in-out;
     }
 
-    .bolt-main{
-      stroke:rgba(223,165,255,.95);
-      stroke-width:4.2;
-      filter:url(#electricGlowStrong);
-      animation:electricFlicker 1.45s infinite ease-in-out;
-    }
-
-    .bolt-core{
-      stroke:rgba(255,248,255,.99);
-      stroke-width:1.5;
-      filter:url(#electricGlowCore);
-      stroke-dasharray:18 26;
-      animation:electricFlow 2.2s linear infinite, electricFlicker 1.2s infinite ease-in-out;
-    }
-
-    .spark{
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      vector-effect:non-scaling-stroke;
-      mix-blend-mode:screen;
-    }
-
-    .spark-aura{
-      stroke:rgba(178,102,255,.16);
-      stroke-width:9;
-      filter:url(#electricGlowAura);
-      animation:sparkPulse 1.4s infinite ease-in-out;
-    }
-
+    .bolt-main,
     .spark-main{
-      stroke:rgba(223,165,255,.94);
-      stroke-width:2.8;
+      stroke:var(--indigo-2);
+      stroke-width:4.6;
       filter:url(#electricGlowStrong);
-      animation:sparkPulse 1.15s infinite ease-in-out;
     }
 
+    .bolt-core,
     .spark-core{
-      stroke:rgba(255,250,255,.98);
-      stroke-width:1.05;
+      stroke:rgba(255,250,255,.99);
+      stroke-width:1.6;
       filter:url(#electricGlowCore);
-      animation:sparkPulse 1s infinite ease-in-out;
+    }
+
+    .travel-aura{
+      stroke-dasharray:220 38 120 34;
+      stroke-dashoffset:0;
+      animation:travel 4.2s linear infinite, electricFlicker 1.8s infinite ease-in-out;
+    }
+
+    .travel-main{
+      stroke-dasharray:130 30 74 24 52 32;
+      stroke-dashoffset:0;
+      animation:travel 2.8s linear infinite, electricFlicker 1.25s infinite ease-in-out;
+    }
+
+    .travel-core{
+      stroke-dasharray:30 24 18 36 12 26;
+      stroke-dashoffset:0;
+      animation:travel 1.7s linear infinite, electricFlicker 1.05s infinite ease-in-out;
+    }
+
+    .branch-aura{
+      animation:branchPulse 1.8s infinite ease-in-out;
+    }
+
+    .branch-main{
+      animation:branchPulse 1.35s infinite ease-in-out;
+    }
+
+    .branch-core{
+      animation:branchPulse 1.05s infinite ease-in-out;
     }
 
     .delay-1{ animation-delay:.12s; }
@@ -420,13 +427,13 @@
 
     .btn-secondary{
       background:rgba(255,255,255,.03);
-      border-color:rgba(183,136,255,.25);
-      box-shadow:0 0 20px rgba(138,43,226,.10);
+      border-color:rgba(141,107,255,.25);
+      box-shadow:0 0 20px rgba(79,57,222,.12);
     }
 
     .btn-secondary:hover{
       transform:translateY(-2px);
-      box-shadow:0 0 26px rgba(138,43,226,.18);
+      box-shadow:0 0 26px rgba(79,57,222,.20);
     }
 
     .section{
@@ -449,17 +456,17 @@
       color:#fff;
       text-shadow:
         0 0 10px rgba(65,105,225,.25),
-        0 0 24px rgba(138,43,226,.18);
+        0 0 24px rgba(79,57,222,.18);
     }
 
     .section-line{
       width:110px;
       height:2px;
-      background:linear-gradient(90deg, var(--royal), var(--purple), transparent);
+      background:linear-gradient(90deg, var(--royal), var(--indigo-3), transparent);
       margin-bottom:26px;
       box-shadow:
         0 0 12px rgba(65,105,225,.4),
-        0 0 18px rgba(138,43,226,.22);
+        0 0 18px rgba(79,57,222,.22);
     }
 
     .section-text{
@@ -495,7 +502,7 @@
       overflow:hidden;
       box-shadow:
         0 0 24px rgba(65,105,225,.08),
-        0 0 38px rgba(138,43,226,.05);
+        0 0 38px rgba(79,57,222,.06);
       transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
 
@@ -503,7 +510,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(65,105,225,.08), transparent 30%, rgba(138,43,226,.08));
+      background:linear-gradient(135deg, rgba(65,105,225,.08), transparent 30%, rgba(79,57,222,.08));
       pointer-events:none;
     }
 
@@ -512,7 +519,7 @@
       border-color:rgba(112,145,255,.22);
       box-shadow:
         0 0 28px rgba(65,105,225,.14),
-        0 0 44px rgba(138,43,226,.10);
+        0 0 44px rgba(79,57,222,.10);
     }
 
     .card h3{
@@ -569,10 +576,10 @@
     }
 
     .music-links a:hover{
-      background:rgba(138,43,226,.12);
+      background:rgba(79,57,222,.12);
       box-shadow:
         0 0 18px rgba(65,105,225,.18),
-        0 0 22px rgba(138,43,226,.15);
+        0 0 22px rgba(79,57,222,.15);
       transform:translateY(-2px);
     }
 
@@ -619,7 +626,7 @@
         opacity:.98;
       }
       50%{
-        transform:scale(1.028);
+        transform:scale(1.024);
         filter:
           drop-shadow(0 0 8px var(--royal-2))
           drop-shadow(0 0 18px var(--royal))
@@ -641,27 +648,32 @@
     }
 
     @keyframes electricFlicker{
-      0%{ opacity:.25; }
-      10%{ opacity:.98; }
-      18%{ opacity:.48; }
+      0%{ opacity:.26; }
+      10%{ opacity:.96; }
+      18%{ opacity:.46; }
       30%{ opacity:1; }
-      44%{ opacity:.38; }
-      58%{ opacity:.93; }
-      72%{ opacity:.52; }
+      44%{ opacity:.36; }
+      58%{ opacity:.94; }
+      72%{ opacity:.54; }
       86%{ opacity:1; }
       100%{ opacity:.34; }
     }
 
-    @keyframes electricFlow{
+    @keyframes travel{
       from{ stroke-dashoffset:0; }
-      to{ stroke-dashoffset:-360; }
+      to{ stroke-dashoffset:-480; }
     }
 
-    @keyframes sparkPulse{
-      0%{ opacity:.18; }
-      35%{ opacity:1; }
-      60%{ opacity:.36; }
-      100%{ opacity:.08; }
+    @keyframes branchPulse{
+      0%{ opacity:.16; }
+      26%{ opacity:1; }
+      46%{ opacity:.34; }
+      72%{ opacity:.92; }
+      100%{ opacity:.10; }
+    }
+
+    .mouse-fade{
+      transition:opacity .12s linear;
     }
 
     @media (max-width:768px){
@@ -670,7 +682,7 @@
       }
 
       .logo-wrap{
-        padding:12px 4px;
+        padding:10px 2px;
       }
 
       .electric-svg{
@@ -723,7 +735,7 @@
               </filter>
 
               <filter id="electricGlowCore" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="1.1" result="blur2"/>
+                <feGaussianBlur stdDeviation="1.15" result="blur2"/>
                 <feMerge>
                   <feMergeNode in="blur2"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -731,7 +743,7 @@
               </filter>
 
               <filter id="electricGlowAura" x="-80%" y="-80%" width="260%" height="260%">
-                <feGaussianBlur stdDeviation="9" result="blur3"/>
+                <feGaussianBlur stdDeviation="10" result="blur3"/>
                 <feMerge>
                   <feMergeNode in="blur3"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -739,61 +751,213 @@
               </filter>
             </defs>
 
-            <!-- MAIN E9$Y OUTLINE TRACES -->
+            <!-- MAIN OUTER WORDMARK TRACE -->
+            <path class="bolt-aura travel-aura" d="M248 606
+              C278 582, 332 575, 428 580
+              C500 560, 581 560, 660 577
+              C735 566, 827 566, 1046 596
+              L1065 615
+              L1033 671
+              L1028 706
+              L994 746
+              L975 854
+              L938 950
+              L894 874
+              L907 756
+              L880 732
+              L802 735
+              L770 773
+              L725 789
+              L623 792
+              L587 827
+              L538 833
+              L484 791
+              L431 822
+              L252 820
+              L220 790
+              L220 625
+              Z"/>
+            <path class="bolt-main travel-main" d="M248 606
+              C278 582, 332 575, 428 580
+              C500 560, 581 560, 660 577
+              C735 566, 827 566, 1046 596
+              L1065 615
+              L1033 671
+              L1028 706
+              L994 746
+              L975 854
+              L938 950
+              L894 874
+              L907 756
+              L880 732
+              L802 735
+              L770 773
+              L725 789
+              L623 792
+              L587 827
+              L538 833
+              L484 791
+              L431 822
+              L252 820
+              L220 790
+              L220 625
+              Z"/>
+            <path class="bolt-core travel-core" d="M248 606
+              C278 582, 332 575, 428 580
+              C500 560, 581 560, 660 577
+              C735 566, 827 566, 1046 596
+              L1065 615
+              L1033 671
+              L1028 706
+              L994 746
+              L975 854
+              L938 950
+              L894 874
+              L907 756
+              L880 732
+              L802 735
+              L770 773
+              L725 789
+              L623 792
+              L587 827
+              L538 833
+              L484 791
+              L431 822
+              L252 820
+              L220 790
+              L220 625
+              Z"/>
+
             <!-- E -->
-            <path class="bolt-aura delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
-            <path class="bolt-main delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
-            <path class="bolt-core delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
+            <path class="bolt-aura travel-aura delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
+            <path class="bolt-main travel-main delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
+            <path class="bolt-core travel-core delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
 
             <!-- 9 -->
-            <path class="bolt-aura delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
-            <path class="bolt-main delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
-            <path class="bolt-core delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
+            <path class="bolt-aura travel-aura delay-2" d="M502 598
+              C450 604, 421 644, 422 699
+              C423 753, 456 783, 507 782
+              C557 781, 591 746, 590 688
+              C589 629, 553 592, 502 598
+              Z
+              M505 626
+              C538 626, 561 649, 561 687
+              C561 722, 539 747, 507 748
+              C475 749, 452 725, 451 688
+              C450 649, 473 626, 505 626
+              Z
+              M506 748 L458 804"/>
+            <path class="bolt-main travel-main delay-2" d="M502 598
+              C450 604, 421 644, 422 699
+              C423 753, 456 783, 507 782
+              C557 781, 591 746, 590 688
+              C589 629, 553 592, 502 598
+              Z
+              M505 626
+              C538 626, 561 649, 561 687
+              C561 722, 539 747, 507 748
+              C475 749, 452 725, 451 688
+              C450 649, 473 626, 505 626
+              Z
+              M506 748 L458 804"/>
+            <path class="bolt-core travel-core delay-2" d="M502 598
+              C450 604, 421 644, 422 699
+              C423 753, 456 783, 507 782
+              C557 781, 591 746, 590 688
+              C589 629, 553 592, 502 598
+              Z
+              M505 626
+              C538 626, 561 649, 561 687
+              C561 722, 539 747, 507 748
+              C475 749, 452 725, 451 688
+              C450 649, 473 626, 505 626
+              Z
+              M506 748 L458 804"/>
 
             <!-- $ -->
-            <path class="bolt-aura delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
-            <path class="bolt-main delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
-            <path class="bolt-core delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
+            <path class="bolt-aura travel-aura delay-3" d="M707 590 L703 622
+              C644 626, 608 657, 611 704
+              C613 739, 637 760, 676 771
+              L718 783
+              C741 790, 749 803, 746 819
+              C741 838, 716 848, 685 844
+              C650 840, 623 827, 599 807
+              M704 590 L702 913
+              M640 666
+              C651 644, 677 636, 703 637
+              C731 638, 754 646, 774 661
+              M680 844
+              C730 848, 774 827, 787 790
+              C798 757, 780 730, 732 718
+              L680 705
+              C652 698, 640 684, 640 666"/>
+            <path class="bolt-main travel-main delay-3" d="M707 590 L703 622
+              C644 626, 608 657, 611 704
+              C613 739, 637 760, 676 771
+              L718 783
+              C741 790, 749 803, 746 819
+              C741 838, 716 848, 685 844
+              C650 840, 623 827, 599 807
+              M704 590 L702 913
+              M640 666
+              C651 644, 677 636, 703 637
+              C731 638, 754 646, 774 661
+              M680 844
+              C730 848, 774 827, 787 790
+              C798 757, 780 730, 732 718
+              L680 705
+              C652 698, 640 684, 640 666"/>
+            <path class="bolt-core travel-core delay-3" d="M707 590 L703 622
+              C644 626, 608 657, 611 704
+              C613 739, 637 760, 676 771
+              L718 783
+              C741 790, 749 803, 746 819
+              C741 838, 716 848, 685 844
+              C650 840, 623 827, 599 807
+              M704 590 L702 913
+              M640 666
+              C651 644, 677 636, 703 637
+              C731 638, 754 646, 774 661
+              M680 844
+              C730 848, 774 827, 787 790
+              C798 757, 780 730, 732 718
+              L680 705
+              C652 698, 640 684, 640 666"/>
 
             <!-- Y -->
-            <path class="bolt-aura delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
-            <path class="bolt-main delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
-            <path class="bolt-core delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
+            <path class="bolt-aura travel-aura delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
+            <path class="bolt-main travel-main delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
+            <path class="bolt-core travel-core delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
 
-            <!-- WHOLE WORDMARK OUTER CRAWL -->
-            <path class="bolt-aura delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
-            <path class="bolt-main delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
-            <path class="bolt-core delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
+            <!-- OUTER BRANCHES -->
+            <path class="bolt-aura branch-aura delay-2" d="M264 666 L228 687 L210 724"/>
+            <path class="bolt-main branch-main delay-2" d="M264 666 L228 687 L210 724"/>
+            <path class="bolt-core branch-core delay-2" d="M264 666 L228 687 L210 724"/>
 
-            <!-- SPARK BRANCHES -->
-            <path class="spark spark-aura delay-1" d="M302 618 L270 648 L287 680"/>
-            <path class="spark spark-main delay-1" d="M302 618 L270 648 L287 680"/>
-            <path class="spark spark-core delay-1" d="M302 618 L270 648 L287 680"/>
+            <path class="bolt-aura branch-aura delay-3" d="M442 618 L466 589 L500 600"/>
+            <path class="bolt-main branch-main delay-3" d="M442 618 L466 589 L500 600"/>
+            <path class="bolt-core branch-core delay-3" d="M442 618 L466 589 L500 600"/>
 
-            <path class="spark spark-aura delay-2" d="M542 617 L569 586 L592 607"/>
-            <path class="spark spark-main delay-2" d="M542 617 L569 586 L592 607"/>
-            <path class="spark spark-core delay-2" d="M542 617 L569 586 L592 607"/>
+            <path class="bolt-aura branch-aura delay-4" d="M606 648 L579 620 L548 629"/>
+            <path class="bolt-main branch-main delay-4" d="M606 648 L579 620 L548 629"/>
+            <path class="bolt-core branch-core delay-4" d="M606 648 L579 620 L548 629"/>
 
-            <path class="spark spark-aura delay-3" d="M723 642 L765 624 L787 648"/>
-            <path class="spark spark-main delay-3" d="M723 642 L765 624 L787 648"/>
-            <path class="spark spark-core delay-3" d="M723 642 L765 624 L787 648"/>
+            <path class="bolt-aura branch-aura delay-5" d="M782 658 L820 630 L848 647"/>
+            <path class="bolt-main branch-main delay-5" d="M782 658 L820 630 L848 647"/>
+            <path class="bolt-core branch-core delay-5" d="M782 658 L820 630 L848 647"/>
 
-            <path class="spark spark-aura delay-4" d="M913 690 L955 674 L972 703"/>
-            <path class="spark spark-main delay-4" d="M913 690 L955 674 L972 703"/>
-            <path class="spark spark-core delay-4" d="M913 690 L955 674 L972 703"/>
+            <path class="bolt-aura branch-aura delay-6" d="M955 710 L1002 682 L1030 704"/>
+            <path class="bolt-main branch-main delay-6" d="M955 710 L1002 682 L1030 704"/>
+            <path class="bolt-core branch-core delay-6" d="M955 710 L1002 682 L1030 704"/>
 
-            <path class="spark spark-aura delay-5" d="M687 845 L713 876 L741 847"/>
-            <path class="spark spark-main delay-5" d="M687 845 L713 876 L741 847"/>
-            <path class="spark spark-core delay-5" d="M687 845 L713 876 L741 847"/>
+            <path class="bolt-aura branch-aura delay-1" d="M935 892 L969 925 L990 902"/>
+            <path class="bolt-main branch-main delay-1" d="M935 892 L969 925 L990 902"/>
+            <path class="bolt-core branch-core delay-1" d="M935 892 L969 925 L990 902"/>
 
-            <path class="spark spark-aura delay-6" d="M459 809 L430 845 L460 865"/>
-            <path class="spark spark-main delay-6" d="M459 809 L430 845 L460 865"/>
-            <path class="spark spark-core delay-6" d="M459 809 L430 845 L460 865"/>
-
-            <!-- MOUSE SPARK -->
-            <path id="mouseSparkAura" class="spark spark-aura" d="" style="opacity:0;"></path>
-            <path id="mouseSparkMain" class="spark spark-main" d="" style="opacity:0;"></path>
-            <path id="mouseSparkCore" class="spark spark-core" d="" style="opacity:0;"></path>
+            <!-- MOUSE LIGHTNING -->
+            <path id="mouseAura" class="spark-aura mouse-fade" d="" style="opacity:0;"></path>
+            <path id="mouseMain" class="spark-main mouse-fade" d="" style="opacity:0;"></path>
+            <path id="mouseCore" class="spark-core mouse-fade" d="" style="opacity:0;"></path>
           </svg>
 
           <div class="logo-core">
@@ -940,9 +1104,9 @@
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
     const logoWrap = document.getElementById("logoWrap");
-    const mouseSparkAura = document.getElementById("mouseSparkAura");
-    const mouseSparkMain = document.getElementById("mouseSparkMain");
-    const mouseSparkCore = document.getElementById("mouseSparkCore");
+    const mouseAura = document.getElementById("mouseAura");
+    const mouseMain = document.getElementById("mouseMain");
+    const mouseCore = document.getElementById("mouseCore");
 
     enterBtn.addEventListener("click", () => {
       enterScreen.classList.add("hidden");
@@ -950,34 +1114,51 @@
 
     let sparkTimeout;
 
+    function makeLightningBolt(x, y) {
+      const points = [];
+      let currentX = x - 34;
+      let currentY = y + 18;
+
+      points.push(`M ${currentX} ${currentY}`);
+
+      for (let i = 0; i < 5; i++) {
+        currentX += 12 + Math.random() * 14;
+        currentY += (Math.random() * 26) - 22;
+        points.push(`L ${currentX} ${currentY}`);
+      }
+
+      return points.join(" ");
+    }
+
     logoWrap.addEventListener("mousemove", (e) => {
       const rect = logoWrap.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 1280;
       const y = ((e.clientY - rect.top) / rect.height) * 1024;
 
-      const d = `M ${x - 24} ${y + 8} L ${x - 8} ${y - 10} L ${x + 6} ${y + 2} L ${x + 18} ${y - 18} L ${x + 34} ${y + 6}`;
+      const d = makeLightningBolt(x, y);
 
-      mouseSparkAura.setAttribute("d", d);
-      mouseSparkMain.setAttribute("d", d);
-      mouseSparkCore.setAttribute("d", d);
+      mouseAura.setAttribute("d", d);
+      mouseMain.setAttribute("d", d);
+      mouseCore.setAttribute("d", d);
 
-      mouseSparkAura.style.opacity = "1";
-      mouseSparkMain.style.opacity = "1";
-      mouseSparkCore.style.opacity = "1";
+      mouseAura.style.opacity = "1";
+      mouseMain.style.opacity = "1";
+      mouseCore.style.opacity = "1";
 
       clearTimeout(sparkTimeout);
       sparkTimeout = setTimeout(() => {
-        mouseSparkAura.style.opacity = "0";
-        mouseSparkMain.style.opacity = "0";
-        mouseSparkCore.style.opacity = "0";
+        mouseAura.style.opacity = "0";
+        mouseMain.style.opacity = "0";
+        mouseCore.style.opacity = "0";
       }, 90);
     });
 
     logoWrap.addEventListener("mouseleave", () => {
-      mouseSparkAura.style.opacity = "0";
-      mouseSparkMain.style.opacity = "0";
-      mouseSparkCore.style.opacity = "0";
+      mouseAura.style.opacity = "0";
+      mouseMain.style.opacity = "0";
+      mouseCore.style.opacity = "0";
     });
   </script>
 </body>
 </html>
+  
