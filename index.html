@@ -22,6 +22,7 @@
       --purple:#8a2be2;
       --purple-2:#b266ff;
       --purple-3:#d896ff;
+      --purple-4:#f0b8ff;
       --panel:rgba(12,18,34,.78);
       --panel-2:rgba(8,11,20,.88);
       --border:rgba(255,255,255,.08);
@@ -40,8 +41,8 @@
     body{
       font-family:"Inter",Arial,sans-serif;
       background:
-        radial-gradient(circle at top, rgba(65,105,225,.09), transparent 35%),
-        radial-gradient(circle at bottom, rgba(138,43,226,.10), transparent 35%),
+        radial-gradient(circle at top, rgba(65,105,225,.11), transparent 30%),
+        radial-gradient(circle at bottom, rgba(138,43,226,.10), transparent 38%),
         linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 45%,var(--bg-3) 100%);
       color:var(--text);
       overflow-x:hidden;
@@ -253,20 +254,20 @@
       align-items:center;
       justify-content:center;
       margin-bottom:26px;
-      padding:30px 28px;
+      padding:20px 18px;
       isolation:isolate;
     }
 
     .logo-wrap::before{
       content:"";
       position:absolute;
-      width:min(720px,86vw);
-      height:min(420px,58vw);
+      width:min(760px,88vw);
+      height:min(470px,62vw);
       left:50%;
-      top:50%;
+      top:54%;
       transform:translate(-50%,-50%);
       background:
-        radial-gradient(circle, rgba(65,105,225,.55) 0%, rgba(65,105,225,.22) 28%, rgba(138,43,226,.10) 48%, transparent 72%);
+        radial-gradient(circle, rgba(65,105,225,.58) 0%, rgba(65,105,225,.22) 28%, rgba(138,43,226,.12) 48%, transparent 72%);
       filter:blur(30px);
       z-index:0;
       animation:coreAura 3.6s ease-in-out infinite;
@@ -284,7 +285,7 @@
     .artist-logo{
       position:relative;
       display:block;
-      width:min(720px,84vw);
+      width:min(760px,88vw);
       max-width:100%;
       height:auto;
       z-index:3;
@@ -298,51 +299,84 @@
 
     .electric-svg{
       position:absolute;
-      inset:-7% -6%;
-      width:112%;
-      height:114%;
+      left:50%;
+      top:56%;
+      transform:translate(-50%,-50%);
+      width:min(760px,88vw);
+      height:auto;
+      aspect-ratio:1280 / 1024;
       z-index:4;
       pointer-events:none;
       overflow:visible;
     }
 
-    .bolt-ghost,
+    .bolt-aura,
     .bolt-main,
     .bolt-core{
       fill:none;
       stroke-linecap:round;
       stroke-linejoin:round;
       mix-blend-mode:screen;
+      vector-effect:non-scaling-stroke;
     }
 
-    .bolt-ghost{
-      stroke:rgba(178,102,255,.20);
-      stroke-width:10;
-      filter:url(#electricGlowSoft);
+    .bolt-aura{
+      stroke:rgba(178,102,255,.18);
+      stroke-width:16;
+      filter:url(#electricGlowAura);
       animation:electricFlicker 1.9s infinite ease-in-out;
     }
 
     .bolt-main{
-      stroke:rgba(216,150,255,.92);
-      stroke-width:3.2;
+      stroke:rgba(223,165,255,.95);
+      stroke-width:4.2;
       filter:url(#electricGlowStrong);
-      animation:electricFlicker 1.6s infinite ease-in-out;
+      animation:electricFlicker 1.45s infinite ease-in-out;
     }
 
     .bolt-core{
-      stroke:rgba(255,248,255,.98);
-      stroke-width:1.15;
+      stroke:rgba(255,248,255,.99);
+      stroke-width:1.5;
       filter:url(#electricGlowCore);
-      stroke-dasharray:18 22;
-      animation:electricFlow 2.2s linear infinite, electricFlicker 1.35s infinite ease-in-out;
+      stroke-dasharray:18 26;
+      animation:electricFlow 2.2s linear infinite, electricFlicker 1.2s infinite ease-in-out;
     }
 
-    .delay-1{ animation-delay:.15s; }
-    .delay-2{ animation-delay:.35s; }
+    .spark{
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+      mix-blend-mode:screen;
+    }
+
+    .spark-aura{
+      stroke:rgba(178,102,255,.16);
+      stroke-width:9;
+      filter:url(#electricGlowAura);
+      animation:sparkPulse 1.4s infinite ease-in-out;
+    }
+
+    .spark-main{
+      stroke:rgba(223,165,255,.94);
+      stroke-width:2.8;
+      filter:url(#electricGlowStrong);
+      animation:sparkPulse 1.15s infinite ease-in-out;
+    }
+
+    .spark-core{
+      stroke:rgba(255,250,255,.98);
+      stroke-width:1.05;
+      filter:url(#electricGlowCore);
+      animation:sparkPulse 1s infinite ease-in-out;
+    }
+
+    .delay-1{ animation-delay:.12s; }
+    .delay-2{ animation-delay:.32s; }
     .delay-3{ animation-delay:.55s; }
-    .delay-4{ animation-delay:.8s; }
-    .delay-5{ animation-delay:1.05s; }
-    .delay-6{ animation-delay:1.3s; }
+    .delay-4{ animation-delay:.76s; }
+    .delay-5{ animation-delay:1.02s; }
+    .delay-6{ animation-delay:1.24s; }
 
     .hero-tagline{
       max-width:790px;
@@ -597,30 +631,37 @@
 
     @keyframes coreAura{
       0%,100%{
-        opacity:.72;
+        opacity:.74;
         transform:translate(-50%,-50%) scale(1);
       }
       50%{
         opacity:1;
-        transform:translate(-50%,-50%) scale(1.04);
+        transform:translate(-50%,-50%) scale(1.045);
       }
     }
 
     @keyframes electricFlicker{
-      0%{ opacity:.28; }
-      10%{ opacity:.95; }
-      18%{ opacity:.42; }
-      28%{ opacity:1; }
-      40%{ opacity:.38; }
-      55%{ opacity:.92; }
-      68%{ opacity:.52; }
-      82%{ opacity:1; }
+      0%{ opacity:.25; }
+      10%{ opacity:.98; }
+      18%{ opacity:.48; }
+      30%{ opacity:1; }
+      44%{ opacity:.38; }
+      58%{ opacity:.93; }
+      72%{ opacity:.52; }
+      86%{ opacity:1; }
       100%{ opacity:.34; }
     }
 
     @keyframes electricFlow{
       from{ stroke-dashoffset:0; }
-      to{ stroke-dashoffset:-320; }
+      to{ stroke-dashoffset:-360; }
+    }
+
+    @keyframes sparkPulse{
+      0%{ opacity:.18; }
+      35%{ opacity:1; }
+      60%{ opacity:.36; }
+      100%{ opacity:.08; }
     }
 
     @media (max-width:768px){
@@ -629,13 +670,11 @@
       }
 
       .logo-wrap{
-        padding:20px 8px;
+        padding:12px 4px;
       }
 
       .electric-svg{
-        inset:-8% -4%;
-        width:108%;
-        height:112%;
+        width:min(760px,94vw);
       }
 
       .section{
@@ -672,11 +711,11 @@
       <div class="hero-content">
         <div class="kicker">Houston • Alternative Rap • Emotion • Atmosphere</div>
 
-        <div class="logo-wrap">
-          <svg class="electric-svg" viewBox="0 0 1000 500" aria-hidden="true">
+        <div class="logo-wrap" id="logoWrap">
+          <svg class="electric-svg" id="electricSvg" viewBox="0 0 1280 1024" aria-hidden="true">
             <defs>
               <filter id="electricGlowStrong" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3.5" result="blur1"/>
+                <feGaussianBlur stdDeviation="3.6" result="blur1"/>
                 <feMerge>
                   <feMergeNode in="blur1"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -684,15 +723,15 @@
               </filter>
 
               <filter id="electricGlowCore" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="1.2" result="blur2"/>
+                <feGaussianBlur stdDeviation="1.1" result="blur2"/>
                 <feMerge>
                   <feMergeNode in="blur2"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
 
-              <filter id="electricGlowSoft" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="8" result="blur3"/>
+              <filter id="electricGlowAura" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="9" result="blur3"/>
                 <feMerge>
                   <feMergeNode in="blur3"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -700,40 +739,61 @@
               </filter>
             </defs>
 
-            <!-- top plasma crawl -->
-            <path class="bolt-ghost delay-1" d="M170 120 C250 92, 320 102, 390 132 S540 162, 612 118 S760 88, 850 118"/>
-            <path class="bolt-main delay-1"  d="M170 120 C250 92, 320 102, 390 132 S540 162, 612 118 S760 88, 850 118"/>
-            <path class="bolt-core delay-1"  d="M170 120 C250 92, 320 102, 390 132 S540 162, 612 118 S760 88, 850 118"/>
+            <!-- MAIN E9$Y OUTLINE TRACES -->
+            <!-- E -->
+            <path class="bolt-aura delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
+            <path class="bolt-main delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
+            <path class="bolt-core delay-1" d="M298 585 L250 592 L232 620 L236 795 L252 822 L428 820 L452 790 L370 792 L290 792 L292 730 L420 728 L444 704 L294 700 L294 650 L416 648 L446 620 L294 618 Z"/>
 
-            <!-- upper inner crawl -->
-            <path class="bolt-ghost delay-2" d="M228 158 C310 126, 390 138, 462 166 S605 186, 690 152 S778 138, 820 150"/>
-            <path class="bolt-main delay-2"  d="M228 158 C310 126, 390 138, 462 166 S605 186, 690 152 S778 138, 820 150"/>
-            <path class="bolt-core delay-2"  d="M228 158 C310 126, 390 138, 462 166 S605 186, 690 152 S778 138, 820 150"/>
+            <!-- 9 -->
+            <path class="bolt-aura delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
+            <path class="bolt-main delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
+            <path class="bolt-core delay-2" d="M500 597 C445 606, 415 648, 417 706 C419 766, 458 792, 512 784 C561 777, 589 740, 590 690 C590 628, 554 589, 500 597 Z M507 621 C544 620, 564 646, 564 685 C563 720, 542 745, 506 748 C470 750, 445 726, 444 686 C444 646, 469 621, 507 621 Z M508 748 L454 806 L475 821 L540 754"/>
 
-            <!-- left side crawl -->
-            <path class="bolt-ghost delay-3" d="M170 120 L148 160 L182 166 L140 220 L188 226 L150 286 L202 258 L170 252 L214 192 L182 188 L222 132"/>
-            <path class="bolt-main delay-3"  d="M170 120 L148 160 L182 166 L140 220 L188 226 L150 286 L202 258 L170 252 L214 192 L182 188 L222 132"/>
-            <path class="bolt-core delay-3"  d="M170 120 L148 160 L182 166 L140 220 L188 226 L150 286 L202 258 L170 252 L214 192 L182 188 L222 132"/>
+            <!-- $ -->
+            <path class="bolt-aura delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
+            <path class="bolt-main delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
+            <path class="bolt-core delay-3" d="M710 585 L690 590 L688 626 C636 630, 603 660, 606 707 C609 740, 632 764, 672 775 L717 788 C735 794, 746 804, 744 820 C741 837, 719 846, 688 844 C650 842, 620 829, 595 808 L582 835 C610 859, 649 872, 687 873 L684 913 L708 912 L711 871 C766 865, 799 834, 798 789 C798 751, 774 727, 726 714 L678 701 C652 694, 640 683, 642 665 C645 648, 663 638, 694 638 C724 638, 748 646, 770 661 L785 636 C764 619, 739 608, 712 604 Z"/>
 
-            <!-- right side crawl -->
-            <path class="bolt-ghost delay-4" d="M848 122 L820 160 L856 166 L808 222 L856 228 L818 288 L874 256 L838 252 L886 192 L850 188 L892 132"/>
-            <path class="bolt-main delay-4"  d="M848 122 L820 160 L856 166 L808 222 L856 228 L818 288 L874 256 L838 252 L886 192 L850 188 L892 132"/>
-            <path class="bolt-core delay-4"  d="M848 122 L820 160 L856 166 L808 222 L856 228 L818 288 L874 256 L838 252 L886 192 L850 188 L892 132"/>
+            <!-- Y -->
+            <path class="bolt-aura delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
+            <path class="bolt-main delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
+            <path class="bolt-core delay-4" d="M846 594 L880 595 L930 693 L987 595 L1063 600 L972 744 L957 838 L925 897 L895 838 L910 742 Z"/>
 
-            <!-- bottom crawl -->
-            <path class="bolt-ghost delay-5" d="M220 326 C300 356, 378 370, 470 356 S646 328, 776 340"/>
-            <path class="bolt-main delay-5"  d="M220 326 C300 356, 378 370, 470 356 S646 328, 776 340"/>
-            <path class="bolt-core delay-5"  d="M220 326 C300 356, 378 370, 470 356 S646 328, 776 340"/>
+            <!-- WHOLE WORDMARK OUTER CRAWL -->
+            <path class="bolt-aura delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
+            <path class="bolt-main delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
+            <path class="bolt-core delay-5" d="M246 602 C280 566, 353 560, 454 566 C553 547, 637 550, 734 566 C820 556, 931 558, 1048 594 L1064 614 L1037 676 L1036 706 L1008 741 L987 875 L937 953 L892 878 L909 760 L883 738 L792 742 L756 788 L700 806 L626 799 L587 836 L538 840 L476 792 L420 830 L250 829 L220 797 L220 625 Z"/>
 
-            <!-- lower branch left -->
-            <path class="bolt-ghost delay-6" d="M256 308 L288 278 L330 292 L298 340"/>
-            <path class="bolt-main delay-6"  d="M256 308 L288 278 L330 292 L298 340"/>
-            <path class="bolt-core delay-6"  d="M256 308 L288 278 L330 292 L298 340"/>
+            <!-- SPARK BRANCHES -->
+            <path class="spark spark-aura delay-1" d="M302 618 L270 648 L287 680"/>
+            <path class="spark spark-main delay-1" d="M302 618 L270 648 L287 680"/>
+            <path class="spark spark-core delay-1" d="M302 618 L270 648 L287 680"/>
 
-            <!-- lower branch right -->
-            <path class="bolt-ghost delay-2" d="M676 306 L716 274 L766 290 L732 344"/>
-            <path class="bolt-main delay-2"  d="M676 306 L716 274 L766 290 L732 344"/>
-            <path class="bolt-core delay-2"  d="M676 306 L716 274 L766 290 L732 344"/>
+            <path class="spark spark-aura delay-2" d="M542 617 L569 586 L592 607"/>
+            <path class="spark spark-main delay-2" d="M542 617 L569 586 L592 607"/>
+            <path class="spark spark-core delay-2" d="M542 617 L569 586 L592 607"/>
+
+            <path class="spark spark-aura delay-3" d="M723 642 L765 624 L787 648"/>
+            <path class="spark spark-main delay-3" d="M723 642 L765 624 L787 648"/>
+            <path class="spark spark-core delay-3" d="M723 642 L765 624 L787 648"/>
+
+            <path class="spark spark-aura delay-4" d="M913 690 L955 674 L972 703"/>
+            <path class="spark spark-main delay-4" d="M913 690 L955 674 L972 703"/>
+            <path class="spark spark-core delay-4" d="M913 690 L955 674 L972 703"/>
+
+            <path class="spark spark-aura delay-5" d="M687 845 L713 876 L741 847"/>
+            <path class="spark spark-main delay-5" d="M687 845 L713 876 L741 847"/>
+            <path class="spark spark-core delay-5" d="M687 845 L713 876 L741 847"/>
+
+            <path class="spark spark-aura delay-6" d="M459 809 L430 845 L460 865"/>
+            <path class="spark spark-main delay-6" d="M459 809 L430 845 L460 865"/>
+            <path class="spark spark-core delay-6" d="M459 809 L430 845 L460 865"/>
+
+            <!-- MOUSE SPARK -->
+            <path id="mouseSparkAura" class="spark spark-aura" d="" style="opacity:0;"></path>
+            <path id="mouseSparkMain" class="spark spark-main" d="" style="opacity:0;"></path>
+            <path id="mouseSparkCore" class="spark spark-core" d="" style="opacity:0;"></path>
           </svg>
 
           <div class="logo-core">
@@ -879,9 +939,44 @@
   <script>
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
+    const logoWrap = document.getElementById("logoWrap");
+    const mouseSparkAura = document.getElementById("mouseSparkAura");
+    const mouseSparkMain = document.getElementById("mouseSparkMain");
+    const mouseSparkCore = document.getElementById("mouseSparkCore");
 
     enterBtn.addEventListener("click", () => {
       enterScreen.classList.add("hidden");
+    });
+
+    let sparkTimeout;
+
+    logoWrap.addEventListener("mousemove", (e) => {
+      const rect = logoWrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 1280;
+      const y = ((e.clientY - rect.top) / rect.height) * 1024;
+
+      const d = `M ${x - 24} ${y + 8} L ${x - 8} ${y - 10} L ${x + 6} ${y + 2} L ${x + 18} ${y - 18} L ${x + 34} ${y + 6}`;
+
+      mouseSparkAura.setAttribute("d", d);
+      mouseSparkMain.setAttribute("d", d);
+      mouseSparkCore.setAttribute("d", d);
+
+      mouseSparkAura.style.opacity = "1";
+      mouseSparkMain.style.opacity = "1";
+      mouseSparkCore.style.opacity = "1";
+
+      clearTimeout(sparkTimeout);
+      sparkTimeout = setTimeout(() => {
+        mouseSparkAura.style.opacity = "0";
+        mouseSparkMain.style.opacity = "0";
+        mouseSparkCore.style.opacity = "0";
+      }, 90);
+    });
+
+    logoWrap.addEventListener("mouseleave", () => {
+      mouseSparkAura.style.opacity = "0";
+      mouseSparkMain.style.opacity = "0";
+      mouseSparkCore.style.opacity = "0";
     });
   </script>
 </body>
