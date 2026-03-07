@@ -21,11 +21,10 @@
       --royal:#4169e1;
       --royal-2:#5f84ff;
 
-      --indigo-1:#c8a2ff;
-      --indigo-2:#8d6bff;
-      --indigo-3:#6e52ff;
-      --indigo-4:#4f39de;
-      --indigo-bloom:rgba(79,57,222,.34);
+      --violet-1:#e3c6ff;
+      --violet-2:#b98cff;
+      --violet-3:#8e63ff;
+      --violet-4:#5c3cff;
 
       --panel:rgba(12,18,34,.78);
       --panel-2:rgba(8,11,20,.88);
@@ -46,7 +45,7 @@
       font-family:"Inter",Arial,sans-serif;
       background:
         radial-gradient(circle at top, rgba(65,105,225,.12), transparent 28%),
-        radial-gradient(circle at bottom, rgba(79,57,222,.12), transparent 34%),
+        radial-gradient(circle at bottom, rgba(92,60,255,.12), transparent 34%),
         linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 45%,var(--bg-3) 100%);
       color:var(--text);
       overflow-x:hidden;
@@ -62,12 +61,12 @@
       background:
         repeating-linear-gradient(
           to bottom,
-          rgba(255,255,255,.02) 0px,
-          rgba(255,255,255,.02) 1px,
+          rgba(255,255,255,.018) 0px,
+          rgba(255,255,255,.018) 1px,
           transparent 2px,
           transparent 4px
         );
-      opacity:.08;
+      opacity:.07;
       mix-blend-mode:screen;
       z-index:0;
     }
@@ -76,7 +75,7 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      opacity:.035;
+      opacity:.03;
       background-image:
         radial-gradient(rgba(255,255,255,.35) .55px, transparent .7px);
       background-size:7px 7px;
@@ -113,7 +112,7 @@
       background:rgba(7,10,20,.68);
       box-shadow:
         0 0 25px rgba(65,105,225,.16),
-        0 0 45px rgba(79,57,222,.14);
+        0 0 45px rgba(92,60,255,.14);
       backdrop-filter:blur(10px);
       width:min(90vw,700px);
       border-radius:18px;
@@ -127,7 +126,7 @@
       inset:-1px;
       border-radius:18px;
       padding:1px;
-      background:linear-gradient(135deg, rgba(65,105,225,.65), rgba(79,57,222,.45), rgba(65,105,225,.15));
+      background:linear-gradient(135deg, rgba(65,105,225,.65), rgba(92,60,255,.45), rgba(65,105,225,.15));
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -181,7 +180,7 @@
 
     .enter-btn{
       border:1px solid rgba(126,154,255,.45);
-      background:linear-gradient(180deg, rgba(65,105,225,.20), rgba(79,57,222,.12));
+      background:linear-gradient(180deg, rgba(65,105,225,.20), rgba(92,60,255,.12));
       color:#fff;
       padding:14px 34px;
       font-size:.92rem;
@@ -192,15 +191,15 @@
       transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
       box-shadow:
         0 0 15px rgba(65,105,225,.22),
-        0 0 28px rgba(79,57,222,.15);
+        0 0 28px rgba(92,60,255,.15);
     }
 
     .enter-btn:hover{
       transform:translateY(-2px) scale(1.03);
       box-shadow:
         0 0 18px rgba(65,105,225,.34),
-        0 0 34px rgba(79,57,222,.24);
-      background:linear-gradient(180deg, rgba(65,105,225,.28), rgba(79,57,222,.16));
+        0 0 34px rgba(92,60,255,.24);
+      background:linear-gradient(180deg, rgba(65,105,225,.28), rgba(92,60,255,.16));
     }
 
     .hero{
@@ -271,7 +270,7 @@
       top:55%;
       transform:translate(-50%,-50%);
       background:
-        radial-gradient(circle, rgba(65,105,225,.62) 0%, rgba(65,105,225,.20) 28%, rgba(79,57,222,.14) 50%, transparent 72%);
+        radial-gradient(circle, rgba(65,105,225,.62) 0%, rgba(65,105,225,.20) 28%, rgba(92,60,255,.14) 50%, transparent 72%);
       filter:blur(34px);
       z-index:0;
       animation:coreAura 3.8s ease-in-out infinite;
@@ -301,89 +300,39 @@
       animation:logoPulse 2.3s ease-in-out infinite;
     }
 
-    .electric-svg{
+    .particle-layer{
       position:absolute;
-      left:50%;
-      top:56%;
-      transform:translate(-50%,-50%);
-      width:min(760px,88vw);
-      height:auto;
-      aspect-ratio:1280 / 1024;
-      z-index:4;
+      inset:0;
       pointer-events:none;
-      overflow:visible;
+      z-index:4;
     }
 
-    .bolt-aura,
-    .bolt-main,
-    .bolt-core,
-    .spark-aura,
-    .spark-main,
-    .spark-core{
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      vector-effect:non-scaling-stroke;
+    .particle{
+      position:absolute;
+      border-radius:50%;
+      pointer-events:none;
+      will-change:transform, opacity;
       mix-blend-mode:screen;
     }
 
-    .bolt-aura,
-    .spark-aura{
-      stroke:rgba(79,57,222,.22);
-      stroke-width:16;
-      filter:url(#electricGlowAura);
+    .particle.far{
+      background:radial-gradient(circle, rgba(227,198,255,.95) 0%, rgba(185,140,255,.52) 45%, rgba(185,140,255,0) 75%);
+      box-shadow:0 0 10px rgba(185,140,255,.35);
+      animation:floatForwardFar linear infinite;
     }
 
-    .bolt-main,
-    .spark-main{
-      stroke:var(--indigo-2);
-      stroke-width:4.6;
-      filter:url(#electricGlowStrong);
+    .particle.mid{
+      background:radial-gradient(circle, rgba(227,198,255,1) 0%, rgba(142,99,255,.68) 48%, rgba(142,99,255,0) 78%);
+      box-shadow:0 0 18px rgba(142,99,255,.42);
+      animation:floatForwardMid linear infinite;
     }
 
-    .bolt-core,
-    .spark-core{
-      stroke:rgba(255,250,255,.99);
-      stroke-width:1.6;
-      filter:url(#electricGlowCore);
+    .particle.near{
+      background:radial-gradient(circle, rgba(255,255,255,.98) 0%, rgba(185,140,255,.78) 40%, rgba(92,60,255,0) 82%);
+      box-shadow:0 0 28px rgba(185,140,255,.48);
+      filter:blur(.2px);
+      animation:floatForwardNear linear infinite;
     }
-
-    .travel-aura{
-      stroke-dasharray:220 38 120 34;
-      stroke-dashoffset:0;
-      animation:travel 4.2s linear infinite, electricFlicker 1.8s infinite ease-in-out;
-    }
-
-    .travel-main{
-      stroke-dasharray:130 30 74 24 52 32;
-      stroke-dashoffset:0;
-      animation:travel 2.8s linear infinite, electricFlicker 1.25s infinite ease-in-out;
-    }
-
-    .travel-core{
-      stroke-dasharray:30 24 18 36 12 26;
-      stroke-dashoffset:0;
-      animation:travel 1.7s linear infinite, electricFlicker 1.05s infinite ease-in-out;
-    }
-
-    .branch-aura{
-      animation:branchPulse 1.8s infinite ease-in-out;
-    }
-
-    .branch-main{
-      animation:branchPulse 1.35s infinite ease-in-out;
-    }
-
-    .branch-core{
-      animation:branchPulse 1.05s infinite ease-in-out;
-    }
-
-    .delay-1{ animation-delay:.12s; }
-    .delay-2{ animation-delay:.32s; }
-    .delay-3{ animation-delay:.55s; }
-    .delay-4{ animation-delay:.76s; }
-    .delay-5{ animation-delay:1.02s; }
-    .delay-6{ animation-delay:1.24s; }
 
     .hero-tagline{
       max-width:790px;
@@ -427,13 +376,13 @@
 
     .btn-secondary{
       background:rgba(255,255,255,.03);
-      border-color:rgba(141,107,255,.25);
-      box-shadow:0 0 20px rgba(79,57,222,.12);
+      border-color:rgba(185,140,255,.25);
+      box-shadow:0 0 20px rgba(92,60,255,.12);
     }
 
     .btn-secondary:hover{
       transform:translateY(-2px);
-      box-shadow:0 0 26px rgba(79,57,222,.20);
+      box-shadow:0 0 26px rgba(92,60,255,.20);
     }
 
     .section{
@@ -456,17 +405,17 @@
       color:#fff;
       text-shadow:
         0 0 10px rgba(65,105,225,.25),
-        0 0 24px rgba(79,57,222,.18);
+        0 0 24px rgba(92,60,255,.18);
     }
 
     .section-line{
       width:110px;
       height:2px;
-      background:linear-gradient(90deg, var(--royal), var(--indigo-3), transparent);
+      background:linear-gradient(90deg, var(--royal), var(--violet-3), transparent);
       margin-bottom:26px;
       box-shadow:
         0 0 12px rgba(65,105,225,.4),
-        0 0 18px rgba(79,57,222,.22);
+        0 0 18px rgba(92,60,255,.22);
     }
 
     .section-text{
@@ -502,7 +451,7 @@
       overflow:hidden;
       box-shadow:
         0 0 24px rgba(65,105,225,.08),
-        0 0 38px rgba(79,57,222,.06);
+        0 0 38px rgba(92,60,255,.06);
       transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
 
@@ -510,7 +459,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(65,105,225,.08), transparent 30%, rgba(79,57,222,.08));
+      background:linear-gradient(135deg, rgba(65,105,225,.08), transparent 30%, rgba(92,60,255,.08));
       pointer-events:none;
     }
 
@@ -519,7 +468,7 @@
       border-color:rgba(112,145,255,.22);
       box-shadow:
         0 0 28px rgba(65,105,225,.14),
-        0 0 44px rgba(79,57,222,.10);
+        0 0 44px rgba(92,60,255,.10);
     }
 
     .card h3{
@@ -576,10 +525,10 @@
     }
 
     .music-links a:hover{
-      background:rgba(79,57,222,.12);
+      background:rgba(92,60,255,.12);
       box-shadow:
         0 0 18px rgba(65,105,225,.18),
-        0 0 22px rgba(79,57,222,.15);
+        0 0 22px rgba(92,60,255,.15);
       transform:translateY(-2px);
     }
 
@@ -647,33 +596,55 @@
       }
     }
 
-    @keyframes electricFlicker{
-      0%{ opacity:.26; }
-      10%{ opacity:.96; }
-      18%{ opacity:.46; }
-      30%{ opacity:1; }
-      44%{ opacity:.36; }
-      58%{ opacity:.94; }
-      72%{ opacity:.54; }
-      86%{ opacity:1; }
-      100%{ opacity:.34; }
+    @keyframes floatForwardFar{
+      0%{
+        transform:translate3d(0, 24px, 0) scale(.55);
+        opacity:0;
+      }
+      12%{
+        opacity:.45;
+      }
+      70%{
+        opacity:.72;
+      }
+      100%{
+        transform:translate3d(0, -120px, 0) scale(1.15);
+        opacity:0;
+      }
     }
 
-    @keyframes travel{
-      from{ stroke-dashoffset:0; }
-      to{ stroke-dashoffset:-480; }
+    @keyframes floatForwardMid{
+      0%{
+        transform:translate3d(0, 30px, 0) scale(.65);
+        opacity:0;
+      }
+      14%{
+        opacity:.55;
+      }
+      68%{
+        opacity:.88;
+      }
+      100%{
+        transform:translate3d(0, -150px, 0) scale(1.45);
+        opacity:0;
+      }
     }
 
-    @keyframes branchPulse{
-      0%{ opacity:.16; }
-      26%{ opacity:1; }
-      46%{ opacity:.34; }
-      72%{ opacity:.92; }
-      100%{ opacity:.10; }
-    }
-
-    .mouse-fade{
-      transition:opacity .12s linear;
+    @keyframes floatForwardNear{
+      0%{
+        transform:translate3d(0, 38px, 0) scale(.75);
+        opacity:0;
+      }
+      16%{
+        opacity:.42;
+      }
+      62%{
+        opacity:.86;
+      }
+      100%{
+        transform:translate3d(0, -180px, 0) scale(1.85);
+        opacity:0;
+      }
     }
 
     @media (max-width:768px){
@@ -683,10 +654,6 @@
 
       .logo-wrap{
         padding:10px 2px;
-      }
-
-      .electric-svg{
-        width:min(760px,94vw);
       }
 
       .section{
@@ -724,242 +691,7 @@
         <div class="kicker">Houston • Alternative Rap • Emotion • Atmosphere</div>
 
         <div class="logo-wrap" id="logoWrap">
-          <svg class="electric-svg" id="electricSvg" viewBox="0 0 1280 1024" aria-hidden="true">
-            <defs>
-              <filter id="electricGlowStrong" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="3.6" result="blur1"/>
-                <feMerge>
-                  <feMergeNode in="blur1"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <filter id="electricGlowCore" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="1.15" result="blur2"/>
-                <feMerge>
-                  <feMergeNode in="blur2"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <filter id="electricGlowAura" x="-80%" y="-80%" width="260%" height="260%">
-                <feGaussianBlur stdDeviation="10" result="blur3"/>
-                <feMerge>
-                  <feMergeNode in="blur3"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            <!-- MAIN OUTER WORDMARK TRACE -->
-            <path class="bolt-aura travel-aura" d="M248 606
-              C278 582, 332 575, 428 580
-              C500 560, 581 560, 660 577
-              C735 566, 827 566, 1046 596
-              L1065 615
-              L1033 671
-              L1028 706
-              L994 746
-              L975 854
-              L938 950
-              L894 874
-              L907 756
-              L880 732
-              L802 735
-              L770 773
-              L725 789
-              L623 792
-              L587 827
-              L538 833
-              L484 791
-              L431 822
-              L252 820
-              L220 790
-              L220 625
-              Z"/>
-            <path class="bolt-main travel-main" d="M248 606
-              C278 582, 332 575, 428 580
-              C500 560, 581 560, 660 577
-              C735 566, 827 566, 1046 596
-              L1065 615
-              L1033 671
-              L1028 706
-              L994 746
-              L975 854
-              L938 950
-              L894 874
-              L907 756
-              L880 732
-              L802 735
-              L770 773
-              L725 789
-              L623 792
-              L587 827
-              L538 833
-              L484 791
-              L431 822
-              L252 820
-              L220 790
-              L220 625
-              Z"/>
-            <path class="bolt-core travel-core" d="M248 606
-              C278 582, 332 575, 428 580
-              C500 560, 581 560, 660 577
-              C735 566, 827 566, 1046 596
-              L1065 615
-              L1033 671
-              L1028 706
-              L994 746
-              L975 854
-              L938 950
-              L894 874
-              L907 756
-              L880 732
-              L802 735
-              L770 773
-              L725 789
-              L623 792
-              L587 827
-              L538 833
-              L484 791
-              L431 822
-              L252 820
-              L220 790
-              L220 625
-              Z"/>
-
-            <!-- E -->
-            <path class="bolt-aura travel-aura delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
-            <path class="bolt-main travel-main delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
-            <path class="bolt-core travel-core delay-1" d="M286 616 L438 612 L414 644 L296 646 L294 698 L420 700 L398 728 L294 730 L294 792 L443 790"/>
-
-            <!-- 9 -->
-            <path class="bolt-aura travel-aura delay-2" d="M502 598
-              C450 604, 421 644, 422 699
-              C423 753, 456 783, 507 782
-              C557 781, 591 746, 590 688
-              C589 629, 553 592, 502 598
-              Z
-              M505 626
-              C538 626, 561 649, 561 687
-              C561 722, 539 747, 507 748
-              C475 749, 452 725, 451 688
-              C450 649, 473 626, 505 626
-              Z
-              M506 748 L458 804"/>
-            <path class="bolt-main travel-main delay-2" d="M502 598
-              C450 604, 421 644, 422 699
-              C423 753, 456 783, 507 782
-              C557 781, 591 746, 590 688
-              C589 629, 553 592, 502 598
-              Z
-              M505 626
-              C538 626, 561 649, 561 687
-              C561 722, 539 747, 507 748
-              C475 749, 452 725, 451 688
-              C450 649, 473 626, 505 626
-              Z
-              M506 748 L458 804"/>
-            <path class="bolt-core travel-core delay-2" d="M502 598
-              C450 604, 421 644, 422 699
-              C423 753, 456 783, 507 782
-              C557 781, 591 746, 590 688
-              C589 629, 553 592, 502 598
-              Z
-              M505 626
-              C538 626, 561 649, 561 687
-              C561 722, 539 747, 507 748
-              C475 749, 452 725, 451 688
-              C450 649, 473 626, 505 626
-              Z
-              M506 748 L458 804"/>
-
-            <!-- $ -->
-            <path class="bolt-aura travel-aura delay-3" d="M707 590 L703 622
-              C644 626, 608 657, 611 704
-              C613 739, 637 760, 676 771
-              L718 783
-              C741 790, 749 803, 746 819
-              C741 838, 716 848, 685 844
-              C650 840, 623 827, 599 807
-              M704 590 L702 913
-              M640 666
-              C651 644, 677 636, 703 637
-              C731 638, 754 646, 774 661
-              M680 844
-              C730 848, 774 827, 787 790
-              C798 757, 780 730, 732 718
-              L680 705
-              C652 698, 640 684, 640 666"/>
-            <path class="bolt-main travel-main delay-3" d="M707 590 L703 622
-              C644 626, 608 657, 611 704
-              C613 739, 637 760, 676 771
-              L718 783
-              C741 790, 749 803, 746 819
-              C741 838, 716 848, 685 844
-              C650 840, 623 827, 599 807
-              M704 590 L702 913
-              M640 666
-              C651 644, 677 636, 703 637
-              C731 638, 754 646, 774 661
-              M680 844
-              C730 848, 774 827, 787 790
-              C798 757, 780 730, 732 718
-              L680 705
-              C652 698, 640 684, 640 666"/>
-            <path class="bolt-core travel-core delay-3" d="M707 590 L703 622
-              C644 626, 608 657, 611 704
-              C613 739, 637 760, 676 771
-              L718 783
-              C741 790, 749 803, 746 819
-              C741 838, 716 848, 685 844
-              C650 840, 623 827, 599 807
-              M704 590 L702 913
-              M640 666
-              C651 644, 677 636, 703 637
-              C731 638, 754 646, 774 661
-              M680 844
-              C730 848, 774 827, 787 790
-              C798 757, 780 730, 732 718
-              L680 705
-              C652 698, 640 684, 640 666"/>
-
-            <!-- Y -->
-            <path class="bolt-aura travel-aura delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
-            <path class="bolt-main travel-main delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
-            <path class="bolt-core travel-core delay-4" d="M854 598 L922 692 L988 598 L1051 600 L968 739 L952 838 L924 946 L894 838 L907 739 L832 600 Z"/>
-
-            <!-- OUTER BRANCHES -->
-            <path class="bolt-aura branch-aura delay-2" d="M264 666 L228 687 L210 724"/>
-            <path class="bolt-main branch-main delay-2" d="M264 666 L228 687 L210 724"/>
-            <path class="bolt-core branch-core delay-2" d="M264 666 L228 687 L210 724"/>
-
-            <path class="bolt-aura branch-aura delay-3" d="M442 618 L466 589 L500 600"/>
-            <path class="bolt-main branch-main delay-3" d="M442 618 L466 589 L500 600"/>
-            <path class="bolt-core branch-core delay-3" d="M442 618 L466 589 L500 600"/>
-
-            <path class="bolt-aura branch-aura delay-4" d="M606 648 L579 620 L548 629"/>
-            <path class="bolt-main branch-main delay-4" d="M606 648 L579 620 L548 629"/>
-            <path class="bolt-core branch-core delay-4" d="M606 648 L579 620 L548 629"/>
-
-            <path class="bolt-aura branch-aura delay-5" d="M782 658 L820 630 L848 647"/>
-            <path class="bolt-main branch-main delay-5" d="M782 658 L820 630 L848 647"/>
-            <path class="bolt-core branch-core delay-5" d="M782 658 L820 630 L848 647"/>
-
-            <path class="bolt-aura branch-aura delay-6" d="M955 710 L1002 682 L1030 704"/>
-            <path class="bolt-main branch-main delay-6" d="M955 710 L1002 682 L1030 704"/>
-            <path class="bolt-core branch-core delay-6" d="M955 710 L1002 682 L1030 704"/>
-
-            <path class="bolt-aura branch-aura delay-1" d="M935 892 L969 925 L990 902"/>
-            <path class="bolt-main branch-main delay-1" d="M935 892 L969 925 L990 902"/>
-            <path class="bolt-core branch-core delay-1" d="M935 892 L969 925 L990 902"/>
-
-            <!-- MOUSE LIGHTNING -->
-            <path id="mouseAura" class="spark-aura mouse-fade" d="" style="opacity:0;"></path>
-            <path id="mouseMain" class="spark-main mouse-fade" d="" style="opacity:0;"></path>
-            <path id="mouseCore" class="spark-core mouse-fade" d="" style="opacity:0;"></path>
-          </svg>
-
+          <div class="particle-layer" id="particleLayer"></div>
           <div class="logo-core">
             <img src="hero.png" alt="E9$Y Logo" class="artist-logo" />
           </div>
@@ -1104,61 +836,98 @@
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
     const logoWrap = document.getElementById("logoWrap");
-    const mouseAura = document.getElementById("mouseAura");
-    const mouseMain = document.getElementById("mouseMain");
-    const mouseCore = document.getElementById("mouseCore");
+    const particleLayer = document.getElementById("particleLayer");
 
     enterBtn.addEventListener("click", () => {
       enterScreen.classList.add("hidden");
     });
 
-    let sparkTimeout;
-
-    function makeLightningBolt(x, y) {
-      const points = [];
-      let currentX = x - 34;
-      let currentY = y + 18;
-
-      points.push(`M ${currentX} ${currentY}`);
-
-      for (let i = 0; i < 5; i++) {
-        currentX += 12 + Math.random() * 14;
-        currentY += (Math.random() * 26) - 22;
-        points.push(`L ${currentX} ${currentY}`);
-      }
-
-      return points.join(" ");
+    function randomBetween(min, max) {
+      return Math.random() * (max - min) + min;
     }
 
-    logoWrap.addEventListener("mousemove", (e) => {
+    function createParticle(type = "far", x = null, y = null, fromMouse = false) {
+      const particle = document.createElement("span");
+      particle.className = `particle ${type}`;
+
       const rect = logoWrap.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 1280;
-      const y = ((e.clientY - rect.top) / rect.height) * 1024;
+      const width = rect.width;
+      const height = rect.height;
 
-      const d = makeLightningBolt(x, y);
+      let size;
+      let duration;
+      let left;
+      let top;
 
-      mouseAura.setAttribute("d", d);
-      mouseMain.setAttribute("d", d);
-      mouseCore.setAttribute("d", d);
+      if (type === "far") {
+        size = randomBetween(4, 8);
+        duration = randomBetween(9, 14);
+      } else if (type === "mid") {
+        size = randomBetween(8, 15);
+        duration = randomBetween(7, 11);
+      } else {
+        size = randomBetween(14, 26);
+        duration = randomBetween(6, 9);
+      }
 
-      mouseAura.style.opacity = "1";
-      mouseMain.style.opacity = "1";
-      mouseCore.style.opacity = "1";
+      if (fromMouse && x !== null && y !== null) {
+        left = x + randomBetween(-18, 18);
+        top = y + randomBetween(-18, 18);
+        if (type === "near") {
+          size *= 0.7;
+        }
+        duration *= 0.55;
+      } else {
+        left = randomBetween(width * 0.08, width * 0.92);
+        top = randomBetween(height * 0.45, height * 0.95);
+      }
 
-      clearTimeout(sparkTimeout);
-      sparkTimeout = setTimeout(() => {
-        mouseAura.style.opacity = "0";
-        mouseMain.style.opacity = "0";
-        mouseCore.style.opacity = "0";
-      }, 90);
-    });
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${left}px`;
+      particle.style.top = `${top}px`;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${randomBetween(0, 1.5)}s`;
 
-    logoWrap.addEventListener("mouseleave", () => {
-      mouseAura.style.opacity = "0";
-      mouseMain.style.opacity = "0";
-      mouseCore.style.opacity = "0";
+      particleLayer.appendChild(particle);
+
+      const lifetime = fromMouse ? 2500 : (duration + 2) * 1000;
+      setTimeout(() => {
+        particle.remove();
+      }, lifetime);
+    }
+
+    function seedParticles() {
+      for (let i = 0; i < 22; i++) createParticle("far");
+      for (let i = 0; i < 16; i++) createParticle("mid");
+      for (let i = 0; i < 8; i++) createParticle("near");
+    }
+
+    seedParticles();
+
+    setInterval(() => createParticle("far"), 650);
+    setInterval(() => createParticle("mid"), 900);
+    setInterval(() => createParticle("near"), 1400);
+
+    let mouseThrottle = 0;
+
+    logoWrap.addEventListener("mousemove", (e) => {
+      const now = Date.now();
+      if (now - mouseThrottle < 45) return;
+      mouseThrottle = now;
+
+      const rect = logoWrap.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      createParticle("mid", x, y, true);
+      createParticle("far", x, y, true);
+
+      if (Math.random() > 0.55) {
+        createParticle("near", x, y, true);
+      }
     });
   </script>
 </body>
 </html>
-  
+    
